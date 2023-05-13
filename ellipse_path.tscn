@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs3qmgehcboc"]
+
+[ext_resource type="Script" path="res://ellipse_path.gd" id="1_4og4v"]
+
+[sub_resource type="Curve3D" id="Curve3D_2d2cl"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.5, 0, 0.000101837, 0, 0, 0, 0, 0, 0, 0.469873, 0, -0.170936, 0, 0, 0, 0, 0, 0, 0.383059, 0, -0.32135, 0, 0, 0, 0, 0, 0, 0.250029, 0, -0.432996, 0, 0, 0, 0, 0, 0, 0.0868352, 0, -0.492402, 0, 0, 0, 0, 0, 0, -0.0868352, 0, -0.492402, 0, 0, 0, 0, 0, 0, -0.250029, 0, -0.432996, 0, 0, 0, 0, 0, 0, -0.383059, 0, -0.32135, 0, 0, 0, 0, 0, 0, -0.469873, 0, -0.170936, 0, 0, 0, 0, 0, 0, -0.5, 0, 0.000101837),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 10
+
+[node name="EllipsePath" type="Path3D"]
+curve = SubResource("Curve3D_2d2cl")
+script = ExtResource("1_4og4v")
+fan_angle = 3.142
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

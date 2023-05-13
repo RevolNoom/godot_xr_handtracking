@@ -1,0 +1,284 @@
+[gd_scene load_steps=5 format=3 uid="uid://mb5nolfdse6p"]
+
+[ext_resource type="PackedScene" uid="uid://bi74whkox4eyf" path="res://Button.tscn" id="1_mvn5k"]
+[ext_resource type="Script" path="res://vrkeyboard.gd" id="1_pvor6"]
+[ext_resource type="Script" path="res://QWERTY.gd" id="2_1ydc5"]
+[ext_resource type="PackedScene" uid="uid://bs3qmgehcboc" path="res://ellipse_path.tscn" id="3_iofgx"]
+
+[node name="VRKeyboard" type="Node3D"]
+script = ExtResource("1_pvor6")
+
+[node name="ControlPanel" type="Node3D" parent="."]
+
+[node name="QWERTY" type="Node3D" parent="."]
+script = ExtResource("2_1ydc5")
+
+[node name="Row1" parent="QWERTY" instance=ExtResource("3_iofgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+clockwise = true
+spread_from_center = true
+width = 0.7
+height = 0.4
+points = 15
+fan_angle = 2.618
+
+[node name="1" type="PathFollow3D" parent="QWERTY/Row1"]
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.432963, 0, -0.100034)
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Q" parent="QWERTY/Row1/1" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+key = 81
+custom_label = "Q"
+
+[node name="2" type="PathFollow3D" parent="QWERTY/Row1"]
+transform = Transform3D(0.999997, 0, 0, 0, 1, 0, 0, 0, 0.999997, -0.345105, 0, -0.144712)
+progress = 0.0999513
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="W" parent="QWERTY/Row1/2" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+key = 87
+custom_label = "W"
+
+[node name="3" type="PathFollow3D" parent="QWERTY/Row1"]
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -0.249119, 0, -0.173399)
+progress = 0.199903
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="E" parent="QWERTY/Row1/3" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+
+[node name="4" type="PathFollow3D" parent="QWERTY/Row1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.150137, 0, -0.190765)
+progress = 0.299854
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="R" parent="QWERTY/Row1/4" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+
+[node name="5" type="PathFollow3D" parent="QWERTY/Row1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0500627, 0, -0.198994)
+progress = 0.399805
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="T" parent="QWERTY/Row1/5" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+
+[node name="6" type="PathFollow3D" parent="QWERTY/Row1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0500627, 0, -0.198994)
+progress = 0.499756
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Y" parent="QWERTY/Row1/6" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+
+[node name="7" type="PathFollow3D" parent="QWERTY/Row1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.150137, 0, -0.190765)
+progress = 0.599708
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="U" parent="QWERTY/Row1/7" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+
+[node name="8" type="PathFollow3D" parent="QWERTY/Row1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.249119, 0, -0.173399)
+progress = 0.699659
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="I" parent="QWERTY/Row1/8" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+
+[node name="9" type="PathFollow3D" parent="QWERTY/Row1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.345105, 0, -0.144712)
+progress = 0.79961
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="O" parent="QWERTY/Row1/9" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+
+[node name="10" type="PathFollow3D" parent="QWERTY/Row1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.432963, 0, -0.100034)
+progress = 0.899561
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="P" parent="QWERTY/Row1/10" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+
+[node name="Row2" parent="QWERTY" instance=ExtResource("3_iofgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+clockwise = true
+spread_from_center = true
+width = 0.6
+height = 0.3
+points = 11
+fan_angle = 2.356
+
+[node name="1" type="PathFollow3D" parent="QWERTY/Row2"]
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.432963, 0, -0.100034)
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="A" parent="QWERTY/Row2/1" instance=ExtResource("1_mvn5k")]
+transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
+skeleton = NodePath("")
+
+[node name="2" type="PathFollow3D" parent="QWERTY/Row2"]
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.333697, 0, -0.148925)
+progress = 0.112445
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="S" parent="QWERTY/Row2/2" instance=ExtResource("1_mvn5k")]
+transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
+skeleton = NodePath("")
+
+[node name="3" type="PathFollow3D" parent="QWERTY/Row2"]
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.224843, 0, -0.178622)
+progress = 0.22489
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="D" parent="QWERTY/Row2/3" instance=ExtResource("1_mvn5k")]
+transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
+skeleton = NodePath("")
+
+[node name="4" type="PathFollow3D" parent="QWERTY/Row2"]
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.112957, 0, -0.194815)
+progress = 0.337335
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="F" parent="QWERTY/Row2/4" instance=ExtResource("1_mvn5k")]
+transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
+skeleton = NodePath("")
+
+[node name="5" type="PathFollow3D" parent="QWERTY/Row2"]
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -1.51922e-08, 0, -0.199986)
+progress = 0.449781
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="G" parent="QWERTY/Row2/5" instance=ExtResource("1_mvn5k")]
+transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
+skeleton = NodePath("")
+
+[node name="6" type="PathFollow3D" parent="QWERTY/Row2"]
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, 0.112957, 0, -0.194815)
+progress = 0.562226
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="H" parent="QWERTY/Row2/6" instance=ExtResource("1_mvn5k")]
+transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
+skeleton = NodePath("")
+
+[node name="7" type="PathFollow3D" parent="QWERTY/Row2"]
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, 0.224843, 0, -0.178622)
+progress = 0.674671
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="J" parent="QWERTY/Row2/7" instance=ExtResource("1_mvn5k")]
+transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
+skeleton = NodePath("")
+
+[node name="8" type="PathFollow3D" parent="QWERTY/Row2"]
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, 0.333697, 0, -0.148925)
+progress = 0.787116
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="K" parent="QWERTY/Row2/8" instance=ExtResource("1_mvn5k")]
+transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
+skeleton = NodePath("")
+
+[node name="9" type="PathFollow3D" parent="QWERTY/Row2"]
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, 0.432963, 0, -0.100034)
+progress = 0.899561
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="L" parent="QWERTY/Row2/9" instance=ExtResource("1_mvn5k")]
+transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
+skeleton = NodePath("")
+
+[node name="Row3" parent="QWERTY" instance=ExtResource("3_iofgx")]
+clockwise = true
+spread_from_center = true
+height = 0.2
+fan_angle = 2.094
+
+[node name="1" type="PathFollow3D" parent="QWERTY/Row3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.432963, 0, -0.100034)
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Z" parent="QWERTY/Row3/1" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+
+[node name="2" type="PathFollow3D" parent="QWERTY/Row3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.297562, 0, -0.160718)
+progress = 0.149927
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="X" parent="QWERTY/Row3/2" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+
+[node name="3" type="PathFollow3D" parent="QWERTY/Row3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.150137, 0, -0.190765)
+progress = 0.299854
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="C" parent="QWERTY/Row3/3" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+
+[node name="4" type="PathFollow3D" parent="QWERTY/Row3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51922e-08, 0, -0.199986)
+progress = 0.449781
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="V" parent="QWERTY/Row3/4" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+key = 32
+custom_label = "Space"
+
+[node name="5" type="PathFollow3D" parent="QWERTY/Row3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.150137, 0, -0.190765)
+progress = 0.599708
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="B" parent="QWERTY/Row3/5" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+
+[node name="6" type="PathFollow3D" parent="QWERTY/Row3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.297562, 0, -0.160718)
+progress = 0.749634
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="N" parent="QWERTY/Row3/6" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
+
+[node name="7" type="PathFollow3D" parent="QWERTY/Row3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.432963, 0, -0.100034)
+progress = 0.899561
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="M" parent="QWERTY/Row3/7" instance=ExtResource("1_mvn5k")]
+skeleton = NodePath("")
