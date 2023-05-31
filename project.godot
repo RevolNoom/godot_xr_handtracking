@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="VR"
-run/main_scene="res://world.tscn"
+run/main_scene="res://environment/world.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,9 +23,21 @@ XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd
 
 enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
 
+[layer_names]
+
+3d_physics/layer_1="static"
+3d_physics/layer_2="dynamic"
+3d_physics/layer_3="pickable"
+3d_physics/layer_4="wall_walking"
+3d_physics/layer_17="held_object"
+3d_physics/layer_18="player_hand"
+3d_physics/layer_19="grab_point"
+3d_physics/layer_20="player_body"
+3d_physics/layer_21="pointable"
+3d_physics/layer_22="hand_pose_area"
+
 [rendering]
 
-renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
 
 [xr]

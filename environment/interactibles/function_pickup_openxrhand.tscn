@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1fheabb8j0y7"]
+
+[ext_resource type="Script" path="res://environment/interactibles/function_pickup_openxrhand.gd" id="1_clxia"]
+[ext_resource type="PackedScene" uid="uid://b3rhymncbdh4c" path="res://environment/hand_pose_matcher.tscn" id="2_45jmy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vjlxy"]
+size = Vector3(0.128017, 0.103817, 0.178295)
+
+[node name="FunctionPickupOpenXRHand" type="BoneAttachment3D"]
+script = ExtResource("1_clxia")
+enabled = true
+
+[node name="HandPoseRecognition" parent="." instance=ExtResource("2_45jmy")]
+poses_allowed_to_recognize = PackedStringArray("Cup", "Default pose", "Grip", "Grip 1", "Grip 2", "Grip 3", "Grip 4", "Grip 5", "Grip Shaft", "Hold", "Horns", "Metal", "Middle", "OK", "Peace", "Pinch Flat", "Pinch Large", "Pinch Middle", "Pinch Ring", "Pinch Tight", "Pinch Up", "PingPong", "Pinky", "Pistol", "Ring", "Rounded", "Sign 1", "Sign 2", "Sign 3", "Sign 4", "Sign 5", "Sign_Point", "Straight", "Surfer", "Thumb")
+
+[node name="GrabArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 262144
+
+[node name="GrabCollisionShape" type="CollisionShape3D" parent="GrabArea"]
+shape = SubResource("BoxShape3D_vjlxy")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, 0)
+pixel_size = 0.002
+
+[connection signal="new_pose" from="HandPoseRecognition" to="." method="_on_hand_pose_recognition_new_pose"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://fqihvn7pghes"]
+
+[ext_resource type="Script" path="res://sliding_settings.gd" id="1_20oiy"]
+[ext_resource type="PackedScene" uid="uid://bppff60eit67" path="res://environment/interactibles/grab_point_controller.tscn" id="2_dlu3l"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ti1s5"]
+size = Vector3(0.02, 0.02, 0.02)
+
+[node name="SlidingSettings" type="Node3D"]
+script = ExtResource("1_20oiy")
+
+[node name="Bar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0)
+mesh = SubResource("BoxMesh_ti1s5")
+skeleton = NodePath("")
+
+[node name="SlidingButtonX" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0)
+mesh = SubResource("BoxMesh_ti1s5")
+skeleton = NodePath("")
+
+[node name="GrabPointController" parent="SlidingButtonX" instance=ExtResource("2_dlu3l")]

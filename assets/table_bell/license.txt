@@ -1,0 +1,11 @@
+Model Information:
+* title:	Table Bell
+* source:	https://sketchfab.com/3d-models/table-bell-77f2ea17b4c84fe1a8d2aec02caa9de3
+* author:	gla_bot (https://sketchfab.com/gla_bot)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Table Bell" (https://sketchfab.com/3d-models/table-bell-77f2ea17b4c84fe1a8d2aec02caa9de3) by gla_bot (https://sketchfab.com/gla_bot) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

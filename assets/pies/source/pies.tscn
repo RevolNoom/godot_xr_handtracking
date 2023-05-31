@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=3 uid="uid://c33mpxywtsg6q"]
+
+[ext_resource type="PackedScene" uid="uid://dlftdfii1ul3d" path="res://assets/pies/pies_type/berry_pie.tscn" id="1_dbnjv"]
+[ext_resource type="PackedScene" uid="uid://7dksrw44asn3" path="res://assets/pies/pies_type/leaf_pie.tscn" id="2_47f3y"]
+[ext_resource type="PackedScene" uid="uid://de14ou5y1fam6" path="res://assets/pies/pies_type/coco_pie.tscn" id="3_3fmvh"]
+[ext_resource type="PackedScene" uid="uid://dlj66tdwuvocw" path="res://assets/pies/pies_type/vanilla_pie.tscn" id="4_33wa0"]
+[ext_resource type="PackedScene" uid="uid://bmixeh782bf8p" path="res://assets/pies/pies_type/mousse.tscn" id="5_1xkus"]
+[ext_resource type="PackedScene" uid="uid://bu7x2jvw7osmu" path="res://assets/pies/pies_type/raspberry_pie.tscn" id="6_w7jhq"]
+
+[node name="pies" type="Node3D"]
+
+[node name="RootNode" type="Node3D" parent="."]
+
+[node name="BerryPie" parent="RootNode" instance=ExtResource("1_dbnjv")]
+
+[node name="LeafPie" parent="RootNode" instance=ExtResource("2_47f3y")]
+
+[node name="CocoPie" parent="RootNode" instance=ExtResource("3_3fmvh")]
+
+[node name="VanillaPie" parent="RootNode" instance=ExtResource("4_33wa0")]
+
+[node name="Mousse" parent="RootNode" instance=ExtResource("5_1xkus")]
+
+[node name="RaspberryPie" parent="RootNode" instance=ExtResource("6_w7jhq")]
