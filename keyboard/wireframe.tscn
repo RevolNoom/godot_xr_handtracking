@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dejuhpf667yal"]
+
+[ext_resource type="ArrayMesh" uid="uid://b37ydidt6qwgj" path="res://keyboard/wireframe.tres" id="1_ec4v1"]
+
+[node name="Wireframe" type="Node3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.472682, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.156649)
+mesh = ExtResource("1_ec4v1")

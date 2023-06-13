@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://7ur344am626x"]
+
+[ext_resource type="Script" path="res://environment/PoseRecordRoom/hand_pose_capture_area.gd" id="1_tdekb"]
+[ext_resource type="PackedScene" uid="uid://dejuhpf667yal" path="res://keyboard/wireframe.tscn" id="2_d737d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xsxpl"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="HandPoseCaptureArea" type="Area3D"]
+collision_layer = 0
+collision_mask = 131072
+script = ExtResource("1_tdekb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_xsxpl")
+
+[node name="Wireframe" parent="." instance=ExtResource("2_d737d")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="PoseName" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.134736, 0)
+pixel_size = 0.001
+text = "HandPoseCaptureArea"
+
+[node name="TimeLeft" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0844709, 0)
+pixel_size = 0.001
+text = "0"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckuki5i5ggxj0"]
+
+[ext_resource type="Script" path="res://environment/interactibles/xr_pickable_rigidbody.gd" id="1_fwvme"]
+[ext_resource type="PackedScene" uid="uid://bppff60eit67" path="res://environment/interactibles/pick_area_controller.tscn" id="2_b1en0"]
+[ext_resource type="PackedScene" uid="uid://cqkiyb020plc3" path="res://environment/interactibles/xr_pick_area.tscn" id="3_0xdhw"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8pebj"]
+points = PackedVector3Array(0.035, 0.03, -0.05, 0.035, 0.03, 0.05, -0.11, 0.03, 0.005, -0.11, 0.03, -0.005, 0.035, -0.03, -0.05, 0.035, -0.03, 0.05, -0.11, -0.03, 0.005, -0.11, -0.03, -0.005)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3isaa"]
+points = PackedVector3Array(0.035, 0.03, -0.05, 0.035, 0.03, 0.05, -0.11, 0.03, 0.005, -0.11, 0.03, -0.005, 0.035, -0.03, -0.05, 0.035, -0.03, 0.05, -0.11, -0.03, 0.005, -0.11, -0.03, -0.005)
+
+[node name="PieTemplate" type="RigidBody3D"]
+freeze_mode = 1
+script = ExtResource("1_fwvme")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0101878, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_8pebj")
+
+[node name="Scale" type="Node3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="Rot" type="Node3D" parent="Scale"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="Pos" type="Node3D" parent="Scale/Rot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00274594, -5.58794e-09, -0.00291001)
+
+[node name="GrabPointController" parent="." instance=ExtResource("2_b1en0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0302965, -0.0274021, 0)
+
+[node name="PickArea" parent="GrabPointController" instance=ExtResource("3_0xdhw")]
+pickup_poses = PackedStringArray("Grip", "Fist")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabPointController/PickArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0404843, 0.0274021, 0)
+shape = SubResource("ConvexPolygonShape3D_3isaa")
+
+[connection signal="dropped" from="GrabPointController" to="." method="_on_grab_point_controller_dropped"]
+[connection signal="picked_up" from="GrabPointController" to="." method="_on_grab_point_controller_picked_up"]

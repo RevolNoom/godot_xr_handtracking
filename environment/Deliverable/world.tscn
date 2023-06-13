@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1vqucnnhdppc"]
+
+[ext_resource type="Script" path="res://environment/Deliverable/world.gd" id="1_kp8vp"]
+[ext_resource type="PackedScene" uid="uid://1n1kke68mut5" path="res://player/user.tscn" id="2_gylfj"]
+[ext_resource type="PackedScene" uid="uid://dr7fewbvmgkyq" path="res://assets/walkway/walkway.tscn" id="3_pkidc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s0v13"]
+
+[sub_resource type="Sky" id="Sky_nthsk"]
+sky_material = SubResource("ProceduralSkyMaterial_s0v13")
+
+[sub_resource type="Environment" id="Environment_dfmb0"]
+background_mode = 2
+sky = SubResource("Sky_nthsk")
+
+[node name="world" type="Node3D"]
+script = ExtResource("1_kp8vp")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dfmb0")
+
+[node name="DefaultPosition" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.55, 0.037, 7.91)
+
+[node name="User" parent="DefaultPosition" instance=ExtResource("2_gylfj")]
+
+[node name="scene" parent="." instance=ExtResource("3_pkidc")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.4627, 0, -6.67987)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.25, -0.258819, 0.933013, 0.0669873, 0.965926, 0.25, -0.965926, 0, 0.258819, 0, 6, 0)
+light_angular_distance = 0.5
+shadow_enabled = true
+shadow_opacity = 0.8
+shadow_blur = 0.4
+directional_shadow_split_1 = 0.002
+directional_shadow_split_2 = 0.004
+directional_shadow_split_3 = 0.006
+directional_shadow_blend_splits = true

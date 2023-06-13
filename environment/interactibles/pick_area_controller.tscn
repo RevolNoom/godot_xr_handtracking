@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bppff60eit67"]
+
+[ext_resource type="Script" path="res://environment/interactibles/pick_area_controller.gd" id="1_jiijo"]
+
+[node name="PickAreaController" type="Node3D"]
+script = ExtResource("1_jiijo")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

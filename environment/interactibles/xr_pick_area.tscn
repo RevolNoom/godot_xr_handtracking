@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqkiyb020plc3"]
+
+[ext_resource type="Script" path="res://environment/interactibles/xr_pick_area.gd" id="1_5g62l"]
+
+[node name="PickArea" type="Area3D"]
+collision_layer = 262144
+collision_mask = 0
+script = ExtResource("1_5g62l")
+pickup_poses = PackedStringArray()

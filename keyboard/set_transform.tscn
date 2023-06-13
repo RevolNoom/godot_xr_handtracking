@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci3g7uf7j3138"]
+
+[ext_resource type="Texture2D" uid="uid://07jrfs65aarp" path="res://assets/hand-icons-set/right_hand_default_pose.png" id="1_5b2y7"]
+[ext_resource type="PackedScene" uid="uid://bppff60eit67" path="res://environment/interactibles/pick_area_controller.tscn" id="2_63omj"]
+[ext_resource type="PackedScene" uid="uid://cqkiyb020plc3" path="res://environment/interactibles/xr_pick_area.tscn" id="3_s8o6i"]
+
+[sub_resource type="GDScript" id="GDScript_hrlnx"]
+script/source = "@tool
+extends XRPickable
+
+# offset and rot are calculated relative to 
+# at the start when picked up
+signal transformed(offset: Vector3, rot: Basis)
+
+func _on_hand_pose_updated():
+	var rot = func_pick_up.global_transform.basis.orthonormalized() * pre_pick_up_hand_orientation.inverse()
+	var offset = rot * pre_pick_up_hand_to_self_offset 
+	#global_transform.origin = offset + func_pick_up.global_transform.origin
+	#global_transform.basis = rot * pre_pick_up_self_orientation
+	emit_signal(\"transformed\", offset, rot)
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ntvo"]
+size = Vector3(0.166691, 0.208732, 0.0473417)
+
+[node name="SetTransform" type="Marker3D"]
+script = SubResource("GDScript_hrlnx")
+
+[node name="Base" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="Base"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.0476496, 0)
+modulate = Color(1, 1, 1, 0.196078)
+pixel_size = 0.002
+texture = ExtResource("1_5b2y7")
+
+[node name="GrabPointController" parent="Base" instance=ExtResource("2_63omj")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="GrabArea" parent="Base/GrabPointController" instance=ExtResource("3_s8o6i")]
+pickup_poses = PackedStringArray("Default pose")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Base/GrabPointController/GrabArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02126e-09, -0.0233637)
+shape = SubResource("BoxShape3D_1ntvo")
+
+[connection signal="dropped" from="Base/GrabPointController" to="." method="_on_grab_point_controller_dropped"]
+[connection signal="picked_up" from="Base/GrabPointController" to="." method="_on_grab_point_controller_picked_up"]

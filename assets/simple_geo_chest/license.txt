@@ -1,0 +1,11 @@
+Model Information:
+* title:	simple geo_chest
+* source:	https://sketchfab.com/3d-models/simple-geo-chest-ace075b3543849369631bfaef5c80f0c
+* author:	yurika.you.found.me (https://sketchfab.com/yurika.you.found.me)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "simple geo_chest" (https://sketchfab.com/3d-models/simple-geo-chest-ace075b3543849369631bfaef5c80f0c) by yurika.you.found.me (https://sketchfab.com/yurika.you.found.me) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

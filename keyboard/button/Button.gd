@@ -1,13 +1,18 @@
 @tool
 extends MeshInstance3D
 
+class_name XRButton
+
 #TODO: Optimize with Multimesh
 #TODO: Support long-press
 #TODO: Support UTF
 #TODO: Shift, Ctrl, Alt
 
 signal pressed(key: Key)
+signal unpressed(key: Key)
 
+
+@export var enabled: bool = true
 
 @export var key: Key = KEY_NONE:
 	set(value):
@@ -21,6 +26,9 @@ signal pressed(key: Key)
 		custom_label = value
 		if get_child_count():
 			$Label.text = custom_label
+
+@export var toggle_mode: bool = false
+var is_pressed: bool = false
 
 
 @export var letter_to_button_ratio = 0.8:
@@ -38,27 +46,53 @@ signal pressed(key: Key)
 			$Label.outline_size = $Label.font_size * outline_to_font_ratio
 
 
+func _ready():
+	_on_property_list_changed()
+	
 func _on_area_3d_body_entered(_body):
+	if not enabled:
+		return
 	# All fingers must be lifted before it's considered pressed again
 	if $Area3D.get_overlapping_bodies().size() == 1:
-		$Keysound.play()
-		emit_signal("pressed", key)
+		if toggle_mode:
+			$Keysound.play()
+			is_pressed = not is_pressed
+			if is_pressed:
+				emit_signal("pressed", key)
+			else:
+				emit_signal("unpressed", key)
+		else:
+			is_pressed = true
+			$Keysound.play()
+			emit_signal("pressed", key)
 
 
-func is_pressed()->bool:
-	return $Area3D.get_overlapping_bodies().size()
+func _on_area_3d_body_exited(_body):
+	if not enabled:
+		return
+	if $Area3D.get_overlapping_bodies().size() == 0:
+		if not toggle_mode:
+			is_pressed = false
+			emit_signal("unpressed", key)
 
 
 func _on_property_list_changed():
-	var size = mesh.size
-	$Area3D/CollisionPolygon3D.polygon = [Vector2(size.x/2, size.z/2),
-										Vector2(size.x/2, -size.z/2),
-										Vector2(-size.x/2, -size.z/2),
-										Vector2(-size.x/2, size.z/2)]
-	$Area3D/CollisionPolygon3D.depth = size.z
+	var size = mesh.get("size")
+	if size == null:
+		return
+		
+	var width = size.x
+	var height = size.z
+	var depth = size.y
+	$Area3D/CollisionPolygon3D.polygon = [Vector2(width/2, depth/2),
+										Vector2(width/2, -depth/2),
+										Vector2(-width/2, -depth/2),
+										Vector2(-width/2, depth/2)]
+	$Area3D/CollisionPolygon3D.depth = height
 	
-	$Label.font_size = min(size.x, size.z) * letter_to_button_ratio / $Label.pixel_size 
+	$Label.font_size = min(width, height) * letter_to_button_ratio / $Label.pixel_size 
 	$Label.outline_size = $Label.font_size * outline_to_font_ratio
-	$Label.position.y = size.y/2 + 0.001 # Float outside Mesh, avoid jittering
+	$Label.position.y = depth/2 + 0.001 # Float outside Mesh, avoid jittering
+
 
 

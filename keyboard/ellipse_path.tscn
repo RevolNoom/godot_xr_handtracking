@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2is6wdbluykn"]
 
-[ext_resource type="Script" path="res://keyboard/ellipse_path.gd" id="1_4og4v"]
+[ext_resource type="Script" path="res://keyboard/ellipse_path.gd" id="1_brcro"]
 
 [sub_resource type="Curve3D" id="Curve3D_2d2cl"]
 _data = {
@@ -11,7 +11,7 @@ point_count = 10
 
 [node name="EllipsePath" type="Path3D"]
 curve = SubResource("Curve3D_2d2cl")
-script = ExtResource("1_4og4v")
+script = ExtResource("1_brcro")
 fan_angle = 3.142
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

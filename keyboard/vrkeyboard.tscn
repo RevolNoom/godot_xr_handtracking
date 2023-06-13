@@ -1,374 +1,564 @@
-[gd_scene load_steps=11 format=3 uid="uid://c36iqm4lgt4rn"]
+[gd_scene load_steps=12 format=3 uid="uid://c36iqm4lgt4rn"]
 
-[ext_resource type="Script" path="res://keyboard/vrkeyboard.gd" id="1_wt8bn"]
-[ext_resource type="Script" path="res://keyboard/QWERTY.gd" id="2_f8u7h"]
-[ext_resource type="PackedScene" uid="uid://b2is6wdbluykn" path="res://keyboard/ellipse_path.tscn" id="3_npsks"]
-[ext_resource type="PackedScene" uid="uid://depddl1urdch2" path="res://keyboard/button/Button.tscn" id="4_24ktc"]
-[ext_resource type="PackedScene" uid="uid://dyeqhserrjdxg" path="res://setting_pos_rot.tscn" id="5_ttxbw"]
+[ext_resource type="Script" path="res://keyboard/vrkeyboard.gd" id="1_w25ix"]
+[ext_resource type="Script" path="res://keyboard/QWERTY.gd" id="2_ej5wv"]
+[ext_resource type="PackedScene" uid="uid://dejuhpf667yal" path="res://keyboard/wireframe.tscn" id="3_0ijkp"]
+[ext_resource type="PackedScene" uid="uid://b2is6wdbluykn" path="res://keyboard/ellipse_path.tscn" id="4_ndkyr"]
+[ext_resource type="PackedScene" uid="uid://depddl1urdch2" path="res://keyboard/button/Button.tscn" id="5_hh8m3"]
+[ext_resource type="PackedScene" uid="uid://lg5t0s4bgtgg" path="res://keyboard/button/setting_button.tscn" id="6_egate"]
+[ext_resource type="PackedScene" uid="uid://dyeqhserrjdxg" path="res://keyboard/set_transform_remote.tscn" id="7_qrw87"]
+
+[sub_resource type="Curve3D" id="Curve3D_x3hui"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.347734, 0, -0.0232934, 0, 0, 0, 0, 0, 0, -0.306402, 0, -0.0472477, 0, 0, 0, 0, 0, 0, -0.239327, 0, -0.0672322, 0, 0, 0, 0, 0, 0, -0.152143, 0, -0.0815677, 0, 0, 0, 0, 0, 0, -0.0521756, 0, -0.0890497, 0, 0, 0, 0, 0, 0, 0.0521756, 0, -0.0890497, 0, 0, 0, 0, 0, 0, 0.152143, 0, -0.0815677, 0, 0, 0, 0, 0, 0, 0.239327, 0, -0.0672322, 0, 0, 0, 0, 0, 0, 0.306402, 0, -0.0472477, 0, 0, 0, 0, 0, 0, 0.347734, 0, -0.0232934),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 10
 
 [sub_resource type="Curve3D" id="Curve3D_55fnw"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.6, 0, 5.09183e-05, 0, 0, 0, 0, 0, 0, -0.58498, 0, -0.0555877, 0, 0, 0, 0, 0, 0, -0.540619, 0, -0.108438, 0, 0, 0, 0, 0, 0, -0.469142, 0, -0.15585, 0, 0, 0, 0, 0, 0, -0.374135, 0, -0.195444, 0, 0, 0, 0, 0, 0, -0.260362, 0, -0.225236, 0, 0, 0, 0, 0, 0, -0.13353, 0, -0.24373, 0, 0, 0, 0, 0, 0, 1.69966e-16, 0, -0.25, 0, 0, 0, 0, 0, 0, 0.13353, 0, -0.24373, 0, 0, 0, 0, 0, 0, 0.260362, 0, -0.225236, 0, 0, 0, 0, 0, 0, 0.374135, 0, -0.195444, 0, 0, 0, 0, 0, 0, 0.469142, 0, -0.15585, 0, 0, 0, 0, 0, 0, 0.540619, 0, -0.108438, 0, 0, 0, 0, 0, 0, 0.58498, 0, -0.0555877, 0, 0, 0, 0, 0, 0, 0.6, 0, 5.09183e-05),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.36, 0, 1.83306e-05, 0, 0, 0, 0, 0, 0, -0.350988, 0, -0.0200116, 0, 0, 0, 0, 0, 0, -0.324372, 0, -0.0390377, 0, 0, 0, 0, 0, 0, -0.281485, 0, -0.0561059, 0, 0, 0, 0, 0, 0, -0.224481, 0, -0.0703599, 0, 0, 0, 0, 0, 0, -0.156217, 0, -0.0810849, 0, 0, 0, 0, 0, 0, -0.0801177, 0, -0.0877429, 0, 0, 0, 0, 0, 0, 1.0198e-16, 0, -0.09, 0, 0, 0, 0, 0, 0, 0.0801177, 0, -0.0877429, 0, 0, 0, 0, 0, 0, 0.156217, 0, -0.0810849, 0, 0, 0, 0, 0, 0, 0.224481, 0, -0.0703599, 0, 0, 0, 0, 0, 0, 0.281485, 0, -0.0561059, 0, 0, 0, 0, 0, 0, 0.324372, 0, -0.0390377, 0, 0, 0, 0, 0, 0, 0.350988, 0, -0.0200116, 0, 0, 0, 0, 0, 0, 0.36, 0, 1.83306e-05),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 15
 
 [sub_resource type="Curve3D" id="Curve3D_q5bdm"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.461921, 0, -0.0765547, 0, 0, 0, 0, 0, 0, -0.404486, 0, -0.11757, 0, 0, 0, 0, 0, 0, -0.324702, 0, -0.152089, 0, 0, 0, 0, 0, 0, -0.226978, 0, -0.178205, 0, 0, 0, 0, 0, 0, -0.116713, 0, -0.194475, 0, 0, 0, 0, 0, 0, 3.06162e-17, 0, -0.2, 0, 0, 0, 0, 0, 0, 0.116713, 0, -0.194475, 0, 0, 0, 0, 0, 0, 0.226978, 0, -0.178205, 0, 0, 0, 0, 0, 0, 0.324702, 0, -0.152089, 0, 0, 0, 0, 0, 0, 0.404486, 0, -0.11757, 0, 0, 0, 0, 0, 0, 0.461921, 0, -0.0765547),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.36, 0, 1.83306e-05, 0, 0, 0, 0, 0, 0, -0.342398, 0, -0.0277976, 0, 0, 0, 0, 0, 0, -0.291272, 0, -0.0528918, 0, 0, 0, 0, 0, 0, -0.211626, 0, -0.0728072, 0, 0, 0, 0, 0, 0, -0.11126, 0, -0.085594, 0, 0, 0, 0, 0, 0, 1.0198e-16, 0, -0.09, 0, 0, 0, 0, 0, 0, 0.11126, 0, -0.085594, 0, 0, 0, 0, 0, 0, 0.211626, 0, -0.0728072, 0, 0, 0, 0, 0, 0, 0.291272, 0, -0.0528918, 0, 0, 0, 0, 0, 0, 0.342398, 0, -0.0277976, 0, 0, 0, 0, 0, 0, 0.36, 0, 1.83306e-05),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 11
 
-[sub_resource type="Curve3D" id="Curve3D_x3hui"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.346371, 0, -0.0500171, 0, 0, 0, 0, 0, 0, -0.290907, 0, -0.0686353, 0, 0, 0, 0, 0, 0, -0.219767, 0, -0.0835548, 0, 0, 0, 0, 0, 0, -0.136783, 0, -0.0939715, 0, 0, 0, 0, 0, 0, -0.0464284, 0, -0.0993241, 0, 0, 0, 0, 0, 0, 0.0464284, 0, -0.0993241, 0, 0, 0, 0, 0, 0, 0.136783, 0, -0.0939715, 0, 0, 0, 0, 0, 0, 0.219767, 0, -0.0835548, 0, 0, 0, 0, 0, 0, 0.290907, 0, -0.0686353, 0, 0, 0, 0, 0, 0, 0.346371, 0, -0.0500171),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-}
-point_count = 10
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqo1l"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_6bqek"]
-size = Vector3(0.2, 0.02, 0.05)
+[sub_resource type="BoxMesh" id="BoxMesh_o6rev"]
+size = Vector3(0.3, 0.02, 0.03)
 
 [node name="VRKeyboard" type="Node3D"]
-script = ExtResource("1_wt8bn")
-
-[node name="DragWindow" type="Node3D" parent="."]
+script = ExtResource("1_w25ix")
 
 [node name="QWERTY" type="Node3D" parent="."]
-script = ExtResource("2_f8u7h")
+script = ExtResource("2_ej5wv")
 
-[node name="Row1" parent="QWERTY" instance=ExtResource("3_npsks")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0321144, 0.115417)
-curve = SubResource("Curve3D_55fnw")
+[node name="Wireframe" parent="QWERTY" instance=ExtResource("3_0ijkp")]
+transform = Transform3D(0.736908, 0, 0, 0, 0.111419, 0, 0, 0, 0.217131, -0.006, 0, -0.0710169)
+
+[node name="RowNumber" parent="QWERTY" instance=ExtResource("4_ndkyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -0.08)
+curve = SubResource("Curve3D_x3hui")
 clockwise = true
 spread_from_center = true
-width = 0.6
-height = 0.25
-points = 15
+width = 0.36
+height = 0.09
+fan_angle = 2.618
 
-[node name="1" type="PathFollow3D" parent="QWERTY/Row1"]
-transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.6, 0, 5.09183e-05)
+[node name="1" type="PathFollow3D" parent="QWERTY/RowNumber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.347734, 0, -0.0232934)
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="Q" parent="QWERTY/Row1/1" instance=ExtResource("4_24ktc")]
+[node name="Key" parent="QWERTY/RowNumber/1" instance=ExtResource("5_hh8m3")]
+skeleton = NodePath("")
+key = 49
+custom_label = "1"
+
+[node name="2" type="PathFollow3D" parent="QWERTY/RowNumber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.286142, 0, -0.0545937)
+progress = 0.0717075
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Key" parent="QWERTY/RowNumber/2" instance=ExtResource("5_hh8m3")]
+skeleton = NodePath("")
+key = 50
+custom_label = "2"
+
+[node name="3" type="PathFollow3D" parent="QWERTY/RowNumber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.215865, 0, -0.0720126)
+progress = 0.143415
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Key" parent="QWERTY/RowNumber/3" instance=ExtResource("5_hh8m3")]
+skeleton = NodePath("")
+key = 51
+custom_label = "3"
+
+[node name="4" type="PathFollow3D" parent="QWERTY/RowNumber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.143652, 0, -0.0825225)
+progress = 0.215123
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Key" parent="QWERTY/RowNumber/4" instance=ExtResource("5_hh8m3")]
+skeleton = NodePath("")
+key = 52
+custom_label = "4"
+
+[node name="5" type="PathFollow3D" parent="QWERTY/RowNumber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0721253, 0, -0.0881692)
+progress = 0.28683
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Key" parent="QWERTY/RowNumber/5" instance=ExtResource("5_hh8m3")]
+skeleton = NodePath("")
+key = 53
+custom_label = "5"
+
+[node name="6" type="PathFollow3D" parent="QWERTY/RowNumber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90921e-08, 0, -0.089985)
+progress = 0.358538
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Key" parent="QWERTY/RowNumber/6" instance=ExtResource("5_hh8m3")]
+skeleton = NodePath("")
+key = 54
+custom_label = "6"
+
+[node name="7" type="PathFollow3D" parent="QWERTY/RowNumber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0721253, 0, -0.0881692)
+progress = 0.430245
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Key" parent="QWERTY/RowNumber/7" instance=ExtResource("5_hh8m3")]
+skeleton = NodePath("")
+key = 55
+custom_label = "7"
+
+[node name="8" type="PathFollow3D" parent="QWERTY/RowNumber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.143652, 0, -0.0825225)
+progress = 0.501953
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Key" parent="QWERTY/RowNumber/8" instance=ExtResource("5_hh8m3")]
+skeleton = NodePath("")
+key = 56
+custom_label = "8"
+
+[node name="9" type="PathFollow3D" parent="QWERTY/RowNumber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.215865, 0, -0.0720126)
+progress = 0.57366
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Key" parent="QWERTY/RowNumber/9" instance=ExtResource("5_hh8m3")]
+skeleton = NodePath("")
+key = 57
+custom_label = "9"
+
+[node name="0" type="PathFollow3D" parent="QWERTY/RowNumber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.286142, 0, -0.0545937)
+progress = 0.645368
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Key" parent="QWERTY/RowNumber/0" instance=ExtResource("5_hh8m3")]
+skeleton = NodePath("")
+key = 48
+custom_label = "0"
+
+[node name="10" type="PathFollow3D" parent="QWERTY/RowNumber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.347734, 0, -0.0232935)
+progress = 0.717075
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Key" parent="QWERTY/RowNumber/10" instance=ExtResource("5_hh8m3")]
+skeleton = NodePath("")
+key = 4194308
+custom_label = "Backspace"
+
+[node name="Row1" parent="QWERTY" instance=ExtResource("4_ndkyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, -0.04)
+curve = SubResource("Curve3D_55fnw")
+clockwise = true
+spread_from_center = true
+width = 0.36
+height = 0.09
+points = 15
+
+[node name="1" type="PathFollow3D" parent="QWERTY/Row1"]
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.36, 0, 1.83306e-05)
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Q" parent="QWERTY/Row1/1" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 81
 custom_label = "Q"
 
 [node name="2" type="PathFollow3D" parent="QWERTY/Row1"]
-transform = Transform3D(0.999997, 0, 0, 0, 1, 0, 0, 0, 0.999997, -0.520321, 0, -0.124466)
-progress = 0.154398
+transform = Transform3D(0.999997, 0, 0, 0, 1, 0, 0, 0, 0.999997, -0.297275, 0, -0.0507539)
+progress = 0.0856088
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="W" parent="QWERTY/Row1/2" instance=ExtResource("4_24ktc")]
+[node name="W" parent="QWERTY/Row1/2" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 87
 custom_label = "W"
 
 [node name="3" type="PathFollow3D" parent="QWERTY/Row1"]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -0.380734, 0, -0.193218)
-progress = 0.308795
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -0.21375, 0, -0.0724164)
+progress = 0.171218
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="E" parent="QWERTY/Row1/3" instance=ExtResource("4_24ktc")]
+[node name="E" parent="QWERTY/Row1/3" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 69
 custom_label = "E"
 
 [node name="4" type="PathFollow3D" parent="QWERTY/Row1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.231467, 0, -0.23064)
-progress = 0.463193
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.128946, 0, -0.0840237)
+progress = 0.256826
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="R" parent="QWERTY/Row1/4" instance=ExtResource("4_24ktc")]
+[node name="R" parent="QWERTY/Row1/4" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 82
 custom_label = "R"
 
 [node name="5" type="PathFollow3D" parent="QWERTY/Row1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0775857, 0, -0.247887)
-progress = 0.617591
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0430544, 0, -0.0893487)
+progress = 0.342435
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="T" parent="QWERTY/Row1/5" instance=ExtResource("4_24ktc")]
+[node name="T" parent="QWERTY/Row1/5" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 84
 custom_label = "T"
 
 [node name="6" type="PathFollow3D" parent="QWERTY/Row1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0775858, 0, -0.247887)
-progress = 0.771988
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0430545, 0, -0.0893487)
+progress = 0.428044
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="Y" parent="QWERTY/Row1/6" instance=ExtResource("4_24ktc")]
+[node name="Y" parent="QWERTY/Row1/6" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 89
 custom_label = "Y"
 
 [node name="7" type="PathFollow3D" parent="QWERTY/Row1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.231467, 0, -0.23064)
-progress = 0.926386
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.128946, 0, -0.0840237)
+progress = 0.513653
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="U" parent="QWERTY/Row1/7" instance=ExtResource("4_24ktc")]
+[node name="U" parent="QWERTY/Row1/7" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 85
 custom_label = "U"
 
 [node name="8" type="PathFollow3D" parent="QWERTY/Row1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.380734, 0, -0.193218)
-progress = 1.08078
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21375, 0, -0.0724164)
+progress = 0.599261
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="I" parent="QWERTY/Row1/8" instance=ExtResource("4_24ktc")]
+[node name="I" parent="QWERTY/Row1/8" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 73
 custom_label = "I"
 
 [node name="9" type="PathFollow3D" parent="QWERTY/Row1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.520321, 0, -0.124466)
-progress = 1.23518
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.297275, 0, -0.0507539)
+progress = 0.68487
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="O" parent="QWERTY/Row1/9" instance=ExtResource("4_24ktc")]
+[node name="O" parent="QWERTY/Row1/9" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 79
 custom_label = "O"
 
 [node name="10" type="PathFollow3D" parent="QWERTY/Row1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, 5.0921e-05)
-progress = 1.38958
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36, 0, 1.83322e-05)
+progress = 0.770479
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="P" parent="QWERTY/Row1/10" instance=ExtResource("4_24ktc")]
+[node name="P" parent="QWERTY/Row1/10" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 80
 custom_label = "P"
 
-[node name="Row2" parent="QWERTY" instance=ExtResource("3_npsks")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0120813, 0.196701)
+[node name="Row2" parent="QWERTY" instance=ExtResource("4_ndkyr")]
 curve = SubResource("Curve3D_q5bdm")
 clockwise = true
 spread_from_center = true
-height = 0.2
+width = 0.36
+height = 0.09
 points = 11
-fan_angle = 2.356
 
-[node name="1" type="PathFollow3D" parent="QWERTY/Row2"]
-transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.461921, 0, -0.0765547)
+[node name="0" type="PathFollow3D" parent="QWERTY/Row2"]
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.36, 0, 1.83306e-05)
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="A" parent="QWERTY/Row2/1" instance=ExtResource("4_24ktc")]
+[node name="Shift" parent="QWERTY/Row2/0" instance=ExtResource("5_hh8m3")]
+transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
+skeleton = NodePath("")
+key = 4194325
+custom_label = "Shift"
+toggle_mode = true
+
+[node name="1" type="PathFollow3D" parent="QWERTY/Row2"]
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.305525, 0, -0.0475826)
+progress = 0.0768985
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="A" parent="QWERTY/Row2/1" instance=ExtResource("5_hh8m3")]
 transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
 skeleton = NodePath("")
 key = 65
 custom_label = "A"
 
 [node name="2" type="PathFollow3D" parent="QWERTY/Row2"]
-transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.35992, 0, -0.138809)
-progress = 0.121741
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.231189, 0, -0.0689764)
+progress = 0.153797
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="S" parent="QWERTY/Row2/2" instance=ExtResource("4_24ktc")]
+[node name="S" parent="QWERTY/Row2/2" instance=ExtResource("5_hh8m3")]
 transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
 skeleton = NodePath("")
 key = 83
 custom_label = "S"
 
 [node name="3" type="PathFollow3D" parent="QWERTY/Row2"]
-transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.242494, 0, -0.1749)
-progress = 0.243482
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.155198, 0, -0.0811857)
+progress = 0.230696
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="D" parent="QWERTY/Row2/3" instance=ExtResource("4_24ktc")]
+[node name="D" parent="QWERTY/Row2/3" instance=ExtResource("5_hh8m3")]
 transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
 skeleton = NodePath("")
 key = 68
 custom_label = "D"
 
 [node name="4" type="PathFollow3D" parent="QWERTY/Row2"]
-transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.121699, 0, -0.193985)
-progress = 0.365223
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, -0.0776421, 0, -0.0878667)
+progress = 0.307594
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="F" parent="QWERTY/Row2/4" instance=ExtResource("4_24ktc")]
+[node name="F" parent="QWERTY/Row2/4" instance=ExtResource("5_hh8m3")]
 transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
 skeleton = NodePath("")
 key = 70
 custom_label = "F"
 
 [node name="5" type="PathFollow3D" parent="QWERTY/Row2"]
-transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, 0, 0, -0.2)
-progress = 0.486964
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, 7.45058e-09, 0, -0.09)
+progress = 0.384493
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="G" parent="QWERTY/Row2/5" instance=ExtResource("4_24ktc")]
+[node name="G" parent="QWERTY/Row2/5" instance=ExtResource("5_hh8m3")]
 transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
 skeleton = NodePath("")
 key = 71
 custom_label = "G"
 
 [node name="6" type="PathFollow3D" parent="QWERTY/Row2"]
-transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, 0.121699, 0, -0.193985)
-progress = 0.608705
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, 0.0776421, 0, -0.0878667)
+progress = 0.461391
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="H" parent="QWERTY/Row2/6" instance=ExtResource("4_24ktc")]
+[node name="H" parent="QWERTY/Row2/6" instance=ExtResource("5_hh8m3")]
 transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
 skeleton = NodePath("")
 key = 72
 custom_label = "H"
 
 [node name="7" type="PathFollow3D" parent="QWERTY/Row2"]
-transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, 0.242494, 0, -0.1749)
-progress = 0.730446
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, 0.155198, 0, -0.0811857)
+progress = 0.53829
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="J" parent="QWERTY/Row2/7" instance=ExtResource("4_24ktc")]
+[node name="J" parent="QWERTY/Row2/7" instance=ExtResource("5_hh8m3")]
 transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
 skeleton = NodePath("")
 key = 74
 custom_label = "J"
 
 [node name="8" type="PathFollow3D" parent="QWERTY/Row2"]
-transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, 0.35992, 0, -0.138809)
-progress = 0.852187
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, 0.231189, 0, -0.0689764)
+progress = 0.615188
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="K" parent="QWERTY/Row2/8" instance=ExtResource("4_24ktc")]
+[node name="K" parent="QWERTY/Row2/8" instance=ExtResource("5_hh8m3")]
 transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
 skeleton = NodePath("")
 key = 75
 custom_label = "K"
 
 [node name="9" type="PathFollow3D" parent="QWERTY/Row2"]
-transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, 0.461921, 0, -0.0765547)
-progress = 0.973928
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, 0.305525, 0, -0.0475826)
+progress = 0.692087
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="L" parent="QWERTY/Row2/9" instance=ExtResource("4_24ktc")]
+[node name="L" parent="QWERTY/Row2/9" instance=ExtResource("5_hh8m3")]
 transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
 skeleton = NodePath("")
 key = 76
 custom_label = "L"
 
-[node name="Row3" parent="QWERTY" instance=ExtResource("3_npsks")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0583688, 0.239198)
-curve = SubResource("Curve3D_x3hui")
-clockwise = true
-spread_from_center = true
-width = 0.4
-height = 0.1
-fan_angle = 2.094
-
-[node name="1" type="PathFollow3D" parent="QWERTY/Row3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.346371, 0, -0.0500171)
+[node name="10" type="PathFollow3D" parent="QWERTY/Row2"]
+transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1, 0.36, 0, 1.83322e-05)
+progress = 0.768985
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="Z" parent="QWERTY/Row3/1" instance=ExtResource("4_24ktc")]
+[node name="Enter" parent="QWERTY/Row2/10" instance=ExtResource("5_hh8m3")]
+transform = Transform3D(1, 0, 0, 0, 0.99999, 0, 0, 0, 1, 0, 0, 0)
+skeleton = NodePath("")
+key = 4194309
+custom_label = "Enter"
+
+[node name="Row3" parent="QWERTY" instance=ExtResource("4_ndkyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0.044)
+curve = SubResource("Curve3D_x3hui")
+clockwise = true
+spread_from_center = true
+width = 0.36
+height = 0.09
+fan_angle = 2.618
+
+[node name="0" type="PathFollow3D" parent="QWERTY/Row3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.347734, 0, -0.0232934)
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Ctrl" parent="QWERTY/Row3/0" instance=ExtResource("5_hh8m3")]
+skeleton = NodePath("")
+key = 4194326
+custom_label = "Ctrl"
+
+[node name="1" type="PathFollow3D" parent="QWERTY/Row3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.268971, 0, -0.059799)
+progress = 0.0896344
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Z" parent="QWERTY/Row3/1" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 90
 custom_label = "Z"
 
 [node name="2" type="PathFollow3D" parent="QWERTY/Row3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.234381, 0, -0.0810313)
-progress = 0.117256
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.180221, 0, -0.077898)
+progress = 0.179269
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="X" parent="QWERTY/Row3/2" instance=ExtResource("4_24ktc")]
+[node name="X" parent="QWERTY/Row3/2" instance=ExtResource("5_hh8m3")]
 transform = Transform3D(0.99992, 0, 0.0126358, 0, 1, 0, -0.0126358, 0, 0.99992, 0, 0, 0)
 skeleton = NodePath("")
 key = 88
 custom_label = "X"
 
 [node name="3" type="PathFollow3D" parent="QWERTY/Row3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11767, 0, -0.0955719)
-progress = 0.234513
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0904102, 0, -0.087102)
+progress = 0.268903
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="C" parent="QWERTY/Row3/3" instance=ExtResource("4_24ktc")]
+[node name="C" parent="QWERTY/Row3/3" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 67
 custom_label = "C"
 
 [node name="4" type="PathFollow3D" parent="QWERTY/Row3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.47674e-08, 0, -0.0999932)
-progress = 0.351769
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90921e-08, 0, -0.089985)
+progress = 0.358538
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="V" parent="QWERTY/Row3/4" instance=ExtResource("4_24ktc")]
+[node name="V" parent="QWERTY/Row3/4" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 86
 custom_label = "V"
 
 [node name="5" type="PathFollow3D" parent="QWERTY/Row3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11767, 0, -0.0955719)
-progress = 0.469026
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0904102, 0, -0.087102)
+progress = 0.448172
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="B" parent="QWERTY/Row3/5" instance=ExtResource("4_24ktc")]
+[node name="B" parent="QWERTY/Row3/5" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 66
 custom_label = "B"
 
 [node name="6" type="PathFollow3D" parent="QWERTY/Row3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.234381, 0, -0.0810313)
-progress = 0.586282
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180221, 0, -0.077898)
+progress = 0.537806
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="N" parent="QWERTY/Row3/6" instance=ExtResource("4_24ktc")]
+[node name="N" parent="QWERTY/Row3/6" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 78
 custom_label = "N"
 
 [node name="7" type="PathFollow3D" parent="QWERTY/Row3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.346371, 0, -0.0500171)
-progress = 0.703539
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.268971, 0, -0.059799)
+progress = 0.627441
 rotation_mode = 0
 tilt_enabled = false
 
-[node name="M" parent="QWERTY/Row3/7" instance=ExtResource("4_24ktc")]
+[node name="M" parent="QWERTY/Row3/7" instance=ExtResource("5_hh8m3")]
 skeleton = NodePath("")
 key = 77
 custom_label = "M"
 
-[node name="Settings" parent="." instance=ExtResource("4_24ktc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.693393, 0, 0.253747)
-material_override = SubResource("StandardMaterial3D_nqo1l")
-mesh = SubResource("BoxMesh_6bqek")
-skeleton = NodePath("../QWERTY")
-custom_label = "Settings"
+[node name="8" type="PathFollow3D" parent="QWERTY/Row3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.347734, 0, -0.0232935)
+progress = 0.717075
+rotation_mode = 0
+tilt_enabled = false
 
-[node name="SettingPosRot" parent="Settings" instance=ExtResource("5_ttxbw")]
-transform = Transform3D(1, 0, 0, 0, 0.83769, -0.546146, 0, 0.546146, 0.83769, 0.0240939, 0.230233, -0.0462133)
+[node name="Alt" parent="QWERTY/Row3/8" instance=ExtResource("5_hh8m3")]
+skeleton = NodePath("")
+key = 4194328
+custom_label = "Alt"
 
-[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
-[connection signal="transformed" from="Settings/SettingPosRot" to="QWERTY" method="_on_setting_pos_rot_transformed"]
+[node name="Space" type="PathFollow3D" parent="QWERTY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.044, 0.0247322)
+rotation_mode = 0
+tilt_enabled = false
+
+[node name="Space" parent="QWERTY/Space" instance=ExtResource("5_hh8m3")]
+mesh = SubResource("BoxMesh_o6rev")
+skeleton = NodePath("../..")
+key = 32
+custom_label = "Space"
+
+[node name="SettingButton" parent="QWERTY" instance=ExtResource("6_egate")]
+transform = Transform3D(0.008, 0, 0, 0, 0.00640752, -0.00478995, 0, 0.00478995, 0.00640752, 0.661723, 0.0961795, -0.0142541)
+visible = false
+skeleton = NodePath("../..")
+enabled = false
+toggle_mode = true
+
+[node name="SetTransformRemote" parent="." instance=ExtResource("7_qrw87")]
+transform = Transform3D(1, 0, 0, 0, 0.917927, -0.396747, 0, 0.396747, 0.917927, 0.5, 0.0376627, -0.0175149)
+
+[connection signal="pressed" from="QWERTY" to="." method="_on_qwerty_pressed"]
+[connection signal="unpressed" from="QWERTY" to="." method="_on_qwerty_unpressed"]
+[connection signal="pressed" from="QWERTY/SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="unpressed" from="QWERTY/SettingButton" to="." method="_on_setting_button_unpressed"]
+[connection signal="transformed" from="SetTransformRemote" to="QWERTY" method="_on_set_transform_remote_transformed"]

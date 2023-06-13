@@ -1,9 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://dlj66tdwuvocw"]
 
-[ext_resource type="Texture2D" uid="uid://dio05pfiu2lb0" path="res://assets/pies/textures/pie_BaseColor.png" id="1_i7os0"]
+[ext_resource type="PackedScene" uid="uid://ckuki5i5ggxj0" path="res://assets/pies/pies_type/pie_template.tscn" id="1_e8nef"]
+[ext_resource type="Texture2D" uid="uid://dio05pfiu2lb0" path="res://assets/pies/textures/pie_BaseColor.png" id="2_lebgk"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gs4o0"]
-albedo_texture = ExtResource("1_i7os0")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aoimm"]
+albedo_texture = ExtResource("2_lebgk")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k52m5"]
 resource_name = "pie"
@@ -25,7 +26,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_35hq0"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_nfg44"]
 resource_name = "Root Scene_pie003"
 _surfaces = [{
 "aabb": AABB(-0.00722343, -0.00447809, 0, 0.0144469, 0.00895618, 0.00586244),
@@ -43,8 +44,8 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_wm4ml")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m3rms"]
-albedo_texture = ExtResource("1_i7os0")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6fo1x"]
+albedo_texture = ExtResource("2_lebgk")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_s8sge"]
 _surfaces = [{
@@ -60,7 +61,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_hqkm4"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_epvvf"]
 resource_name = "Root Scene_Vert001"
 _surfaces = [{
 "aabb": AABB(-0.00347462, -0.00395239, -0.000810931, 0.0129473, 0.0086998, 0.0014046),
@@ -78,23 +79,16 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_s8sge")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2m8gh"]
-points = PackedVector3Array(-0.00671267, -0.000460921, 0.000140679, 0.00685607, 0.00452857, 0.00605714, 0.00731429, 0.00384214, 0.00605714, 0.00685607, 0.00452857, -0.000113078, 0.00662839, -0.00461429, -0.000113078, -0.00731429, 0.000412675, 0.00605714, 0.00662839, -0.00461429, 0.00605714, -0.00731429, 0.000412675, -0.000113078, 0.00731429, -0.00392786, -0.000113078, -0.00671267, -0.000460921, 0.00580338, 0.00459997, 0.00413983, 0.00579479, 0.00731429, -0.00392786, 0.00605714, 0.00477738, -0.00419752, 0.00577588, 0.00731429, 0.00384214, -0.000113078, 0.00459997, 0.00413983, 0.000149272, 0.00477738, -0.00419752, 0.000168183)
+[node name="VanillaPie" instance=ExtResource("1_e8nef")]
 
-[node name="VanillaPie" type="RigidBody3D"]
-
-[node name="Base" type="MeshInstance3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_gs4o0")
-mesh = SubResource("ArrayMesh_35hq0")
+[node name="Base" type="MeshInstance3D" parent="Scale/Rot/Pos" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 3.55271e-15, 0, -3.55271e-15, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_aoimm")
+mesh = SubResource("ArrayMesh_nfg44")
 skeleton = NodePath("")
 
-[node name="Vert001" type="MeshInstance3D" parent="Base"]
+[node name="Vert001" type="MeshInstance3D" parent="Scale/Rot/Pos/Base" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.64698e-23, 0, -2.64698e-23, 1, -0.00320566, 3.35193e-05, 0.00592792)
-material_override = SubResource("StandardMaterial3D_m3rms")
-mesh = SubResource("ArrayMesh_hqkm4")
+material_override = SubResource("StandardMaterial3D_6fo1x")
+mesh = SubResource("ArrayMesh_epvvf")
 skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_2m8gh")

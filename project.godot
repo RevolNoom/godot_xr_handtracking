@@ -11,17 +11,13 @@ config_version=5
 [application]
 
 config/name="VR"
-run/main_scene="res://environment/world.tscn"
-config/features=PackedStringArray("4.0", "Forward Plus")
+run/main_scene="res://environment/Deliverable/world.tscn"
+config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
-
-[autoload]
-
-XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
+enabled=PackedStringArray()
 
 [layer_names]
 
@@ -43,4 +39,5 @@ textures/vram_compression/import_etc2_astc=true
 [xr]
 
 openxr/enabled=true
+openxr/default_action_map="res://keyboard/openxr_action_map.tres"
 shaders/enabled=true

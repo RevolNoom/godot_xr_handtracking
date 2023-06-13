@@ -21,13 +21,13 @@ enum SpreadMode{
 
 @export var width: float = 0.5:
 	set(value):
-		if value > 0:
+	#	if value > 0:
 			width = value
 			rebuild_curve()
 			
 @export var height: float = 0.5:
 	set(value):
-		if value > 0:
+	#	if value > 0:
 			height = value
 			rebuild_curve()
 

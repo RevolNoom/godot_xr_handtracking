@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://1n1kke68mut5"]
-
-[ext_resource type="PackedScene" uid="uid://dcw7tgphj3cdc" path="res://environment/tracked_hand_left.tscn" id="2_eblii"]
-
-[node name="User" type="XROrigin3D"]
-
-[node name="XRCamera3D" type="XRCamera3D" parent="."]
-
-[node name="TrackedHandLeft" parent="." instance=ExtResource("2_eblii")]
