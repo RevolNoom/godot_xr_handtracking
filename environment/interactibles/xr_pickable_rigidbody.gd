@@ -1,7 +1,9 @@
 @tool
+class_name XRPickableRigidBody
 extends RigidBody3D
 
-class_name XRPickableRigidBody
+
+# NOTE: Use freeze_mode = Kinematic for this RigidBody3D
 
 
 signal picked(_self, by_hand: XRPickupFunction, at_grab_point: XRPickArea)
@@ -14,20 +16,23 @@ const DEFAULT_PICKUP_LAYER: int = 0b0000_0000_0000_0001_0000_0000_0000_0000
 @export_flags_3d_physics var picked_up_layer: int = DEFAULT_PICKUP_LAYER
 @export_flags_3d_physics var picked_up_mask: int = 0
 
+
 var original_collision_layer: int
 var original_collision_mask: int
+
 
 var pre_pick_up_hand_orientation: Basis
 var pre_pick_up_self_orientation: Basis
 var pre_pick_up_hand_to_self_offset: Vector3
-var func_pick_up: XRPickupFunction
+var picker: XRPickupFunction
 
 
-func _on_grab_point_controller_picked_up(by_hand: XRPickupFunction, at_grab_point: XRPickArea):
+func _on_pick_area_controller_picked_up(by_hand: XRPickupFunction, at_grab_point: XRPickArea):
 	freeze = true
-	by_hand.connect("hand_pose_updated", _on_hand_pose_updated)
+	$VelocityAverager3D.enabled = true
+	by_hand.connect("transform_updated", _on_hand_transform_updated)
 	
-	func_pick_up = by_hand
+	picker = by_hand
 	
 	pre_pick_up_hand_orientation = by_hand.global_transform.basis.orthonormalized()
 	pre_pick_up_self_orientation = global_transform.basis
@@ -43,17 +48,21 @@ func _on_grab_point_controller_picked_up(by_hand: XRPickupFunction, at_grab_poin
 	emit_signal("picked", self, by_hand, at_grab_point)
 
 
-func _on_hand_pose_updated():
-	var rot = func_pick_up.global_transform.basis.orthonormalized() * pre_pick_up_hand_orientation.inverse()
+func _on_hand_transform_updated():
+	var rot = picker.global_transform.basis.orthonormalized() * pre_pick_up_hand_orientation.inverse()
 	var offset = rot * pre_pick_up_hand_to_self_offset 
-	global_transform.origin = offset + func_pick_up.global_transform.origin
+	global_transform.origin = offset + picker.global_transform.origin
 	global_transform.basis = rot * pre_pick_up_self_orientation
 
 	
-func _on_grab_point_controller_dropped(by_hand: XRPickupFunction):
+func _on_pick_area_controller_dropped(by_hand: XRPickupFunction):
 	freeze = false
-	by_hand.disconnect("hand_pose_updated", _on_hand_pose_updated)
+	$VelocityAverager3D.enabled = false
+	by_hand.disconnect("transform_updated", _on_hand_transform_updated)
 	collision_mask = original_collision_mask
 	collision_layer = original_collision_layer
+	
+	linear_velocity = $VelocityAverager3D.average_linear_velocity()
+	angular_velocity = $VelocityAverager3D.average_angular_velocity()
 
 	emit_signal("dropped", self, by_hand)

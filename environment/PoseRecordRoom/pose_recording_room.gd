@@ -3,8 +3,10 @@ extends Node3D
 # Refers to https://godotvr.github.io/godot-xr-tools/docs/hand_poses/
 # for a list of a lot of hand poses
 
-#var filepath = "/storage/emulated/0/Download/poses_records.json"
-var recorded_poses: Dictionary
+var filepath = "user://pose_records.json"
+var recorded_poses: Dictionary = {
+	"left": {},
+	"right": {}}
 
 
 var interface: XRInterface
@@ -15,29 +17,31 @@ func _ready():
 	if interface and interface.is_initialized():
 		print("XR READY!")
 		get_viewport().use_xr = true
-		
-		
-	#OS.request_permissions()
-#	var file = FileAccess.open(filepath, FileAccess.READ)
+
+	var file = FileAccess.open(filepath, FileAccess.READ)
 	var json = null
-#	if file != null:
-#		json = JSON.parse_string(\
-#			file.get_as_text())
+	if file != null:\
+		json = JSON.parse_string(\
+			file.get_as_text())
 		
-	if json == null or\
-		json == {}:
-		recorded_poses = {
-			"left": {},
-			"right": {}}
+	if json != null:
+		recorded_poses = json
+		for hand in json.keys():
+			for pose in json[hand].keys():
+				var hpca = $PoseBoard/AllPoses.get_node_or_null(pose.capitalize())
+				if hpca == null:
+					printerr("No pose " + pose + " found.")
+					continue
+				hpca.apply_pose_on_hand(hpca.get_node("Hands/"+hand), json[hand][pose])
 	
 	
-	for area in $AllPoses.get_children():
+	for area in $PoseBoard/AllPoses.get_children():
 		area.connect("recorded", _on_area_new_pose_recorded)
-	for i in range(0, $AllPoses.get_child_count()):
-		$AllPoses.get_child(i).position = Vector3((i%5)*0.2, int(i/5) * 0.2, 0)
+	for i in range(0, $PoseBoard/AllPoses.get_child_count()):
+		$PoseBoard/AllPoses.get_child(i).position = Vector3((i%5)*0.2, int(i/5) * 0.2, 0)
 	
-	#if file != null:
-	#	file.close()
+	if file != null:
+		file.close()
 		
 
 func _on_area_new_pose_recorded(pose_info: Dictionary):
@@ -47,36 +51,43 @@ func _on_area_new_pose_recorded(pose_info: Dictionary):
 	recorded_poses[hand][pose_name] = pose_info[hand][pose_name]
 
 
-
-func SaveToFile():
-	#var file = FileAccess.open(filepath, FileAccess.WRITE)
-	var file
+func SaveToFile(text_string):
+	var file = FileAccess.open(filepath, FileAccess.WRITE)
 	if file != null:
-		file.store_string(json_str)
+		file.store_string(text_string)
 		file.flush()
 		file.close()
-		print("Saved to directory " + file.get_path_absolute())
+		print("Saved to " + file.get_path_absolute())
 	else:
 		print("Can't open file to write")
+
+
+func get_formatted_json(rec_poses) -> String:
+	var json = JSON.stringify(rec_poses)
+	#Do some formatting to make it easier on the eyes
+	json = json.replace(":{", ":\n{\n")
+	json = json.replace("}", "\n}")
+	json = json.replace(",\"", ",\n\"")
+	return json
 	
 
-var json_str
-func _on_print_save_pressed(_key):
-	#print("Recorded_poses: ")
-	json_str = JSON.stringify(recorded_poses)
-	#Do some formatting to make it easier on the eyes
-	#json_str = json_str.replace(":{", ":\n{\n")
-	#json_str = json_str.replace("}", "\n}")
-	#json_str = json_str.replace(",\"", ",\n\"")
-	#SaveToFile()
+func _on_save_pressed(_key):
+	SaveToFile(JSON.stringify(recorded_poses))
+
+
+var json_str: String
+func _on_print_pressed(_key):
+	print("Recorded_poses: ")
+	json_str = get_formatted_json(recorded_poses)
 	$Timer.start()
 
 
 func _on_timer_timeout():
-	const SUBSTR = 2000
-	if json_str.length() >= SUBSTR:
-		print(json_str.substr(0, SUBSTR))
-		json_str = json_str.substr(SUBSTR)
+	const SUBSTR = 1500
+	var i = json_str.find("\n", SUBSTR)
+	if i >= SUBSTR:
+		print(json_str.substr(0, i))
+		json_str = json_str.substr(i+1)
 	else:
 		print(json_str)
 		json_str = ""

@@ -1,0 +1,11 @@
+Model Information:
+* title:	DRK-1 Probe Droid
+* source:	https://sketchfab.com/3d-models/drk-1-probe-droid-ce96ea38dfb54199be3b8f8ecef7a6b8
+* author:	nick.dob (https://sketchfab.com/nick.dob)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "DRK-1 Probe Droid" (https://sketchfab.com/3d-models/drk-1-probe-droid-ce96ea38dfb54199be3b8f8ecef7a6b8) by nick.dob (https://sketchfab.com/nick.dob) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

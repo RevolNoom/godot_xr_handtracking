@@ -1,0 +1,11 @@
+Model Information:
+* title:	Battle Droid B2
+* source:	https://sketchfab.com/3d-models/battle-droid-b2-1f49d4f09768498e9a95886891698739
+* author:	Andrés Kuiper (https://sketchfab.com/kuiperesteve)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Battle Droid B2" (https://sketchfab.com/3d-models/battle-droid-b2-1f49d4f09768498e9a95886891698739) by Andrés Kuiper (https://sketchfab.com/kuiperesteve) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

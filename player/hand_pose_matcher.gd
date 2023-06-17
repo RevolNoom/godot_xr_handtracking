@@ -1,15 +1,13 @@
 @tool
+class_name HandPoseMatcher
 extends Node
-#TODO: Pre-calculate margins of hand pose differences
-# so we don't have to recalculate difference to all poses all the time
-#
-# Meaning: Only recalculate difference to all poses 
-# when current skeleton deviates from currently recognized pose
-# some constant C - the margin that was calculated
 
 
 signal new_pose(previous_pose: StringName, pose: StringName)
 
+
+const POSITION = 0
+const ROTATION = 1
 
 @export_enum("left", "right") var hand: String = "left":
 	set(value):
@@ -20,6 +18,7 @@ signal new_pose(previous_pose: StringName, pose: StringName)
 	set(skel):
 		skeleton = skel
 		set_process(hand_pose_templates != "" and skeleton != null and not Engine.is_editor_hint())
+
 
 # Used to prevent jittering between two poses 
 # Currently USELESS
@@ -60,10 +59,10 @@ signal new_pose(previous_pose: StringName, pose: StringName)
 # Leave empty to try recognize all poses
 @export var poses_allowed_to_recognize: PackedStringArray
 
-const POSITION = 0
-const ROTATION = 1
+
 var current_pose: StringName = ""
 var previous_pose: StringName = ""
+
 
 func _enter_tree():
 	if poses_allowed_to_recognize.size():
@@ -72,7 +71,7 @@ func _enter_tree():
 		current_pose = supported_poses[hand].keys().pick_random()
 		
 
-func get_skeleton_pose() -> Dictionary:
+func _get_skeleton_pose() -> Dictionary:
 	if skeleton == null:
 		return {}
 	var result = {}
@@ -82,18 +81,18 @@ func get_skeleton_pose() -> Dictionary:
 	return result
 
 
-func find_pose_most_similar_to_current_skeleton() -> StringName:
+func _find_pose_most_similar_to_current_skeleton() -> StringName:
 	var best_match_pose: StringName
 	var best_difference: float = INF
 	
-	var skel = get_skeleton_pose()
+	var skel = _get_skeleton_pose()
 	
 	var poses_to_match = poses_allowed_to_recognize
 	if poses_to_match.size() == 0:
 		poses_to_match = supported_poses[hand].keys()
 		
 	for pose in poses_to_match:
-		var difference = calculate_difference(skel, supported_poses[hand][pose])
+		var difference = HandPoseMatcher.calculate_difference(skel, supported_poses[hand][pose])
 		
 		if difference < best_difference:
 			best_match_pose = pose
@@ -103,41 +102,18 @@ func find_pose_most_similar_to_current_skeleton() -> StringName:
 
 
 # Each pose is a dictionary that contains Vector3
-func calculate_difference(pose1: Dictionary, pose2: Dictionary) -> float:
+static func calculate_difference(pose1: Dictionary, pose2: Dictionary) -> float:
 	var difference = 0.0
 	for bone in pose1.keys():
 		var pos_diff = (pose1[bone][POSITION] as Vector3).distance_to(pose2[bone][POSITION])
 		var rot_diff = (pose1[bone][ROTATION] as Quaternion).angle_to(pose2[bone][ROTATION])
-		#var distance_to_wrist_diff = \
-		#	(pose1[bone][POSITION] as Vector3).distance_to(pose1["0"][POSITION])\
-		#	- (pose2[bone][POSITION] as Vector3).distance_to(pose2["0"][POSITION])
-		difference += abs(pos_diff * rot_diff + pos_diff + rot_diff)# * distance_to_wrist_diff
+		difference += abs(pos_diff * rot_diff + pos_diff + rot_diff)
 	return difference
 
 
 func _process(_delta):
-	var recognized_pose: StringName = find_pose_most_similar_to_current_skeleton()
+	var recognized_pose: StringName = _find_pose_most_similar_to_current_skeleton()
 	if recognized_pose != current_pose:
 		previous_pose = current_pose
 		current_pose = recognized_pose
 		emit_signal("new_pose", previous_pose, recognized_pose)
-
-
-func _on_timer_timeout():
-	var best_match_pose: StringName
-	var best_difference: float = INF
-	
-	var skel = get_skeleton_pose()
-	
-	var poses_to_match = poses_allowed_to_recognize
-	if poses_to_match.size() == 0:
-		poses_to_match = supported_poses[hand].keys()
-		
-	for pose in poses_to_match:
-		var difference = calculate_difference(skel, supported_poses[hand][pose])
-		print("Pose: "+ str(pose) + " - " + str(difference))
-		if difference < best_difference:
-			best_match_pose = pose
-			best_difference = difference
-	print("best match: " + best_match_pose)
-	print()

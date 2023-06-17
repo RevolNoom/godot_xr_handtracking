@@ -28,8 +28,6 @@ signal unpressed(key: Key)
 			$Label.text = custom_label
 
 @export var toggle_mode: bool = false
-var is_pressed: bool = false
-
 
 @export var letter_to_button_ratio = 0.8:
 	set(new_ratio):
@@ -45,9 +43,12 @@ var is_pressed: bool = false
 		if get_child_count():
 			$Label.outline_size = $Label.font_size * outline_to_font_ratio
 
+var is_pressed: bool = false
+
 
 func _ready():
 	_on_property_list_changed()
+	
 	
 func _on_area_3d_body_entered(_body):
 	if not enabled:

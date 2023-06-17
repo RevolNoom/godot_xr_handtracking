@@ -20,4 +20,4 @@ func _on_keyboard_power_pressed(_key):
 
 func _on_password_text_submitted(new_text):
 	if new_text == cheatcode:
-		$PieSpawn.SpawnPies()
+		$PieSpawn.spawn_pies()

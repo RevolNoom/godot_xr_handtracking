@@ -9,8 +9,6 @@ signal transformed(global_movement: Vector3, global_orthonormalized_rotation: Ba
 var func_pick_up: XRPickupFunction
 
 @onready var initial_base_transform: Transform3D = $Base.transform
-var enable_signalling: bool = false
-
 
 #TODO: What happens if disable while it's being grabbed?
 @export var enabled: bool = true:
@@ -18,6 +16,8 @@ var enable_signalling: bool = false
 		enabled = enable
 		if get_child_count():
 			$Base/GrabPointController.enabled = enable
+
+var enable_signalling: bool = false
 
 
 func _on_grab_point_controller_picked_up(by_hand: XRPickupFunction, _at_grab_point):

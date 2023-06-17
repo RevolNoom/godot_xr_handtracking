@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://dhw38t4v4v4vg"]
 
-[ext_resource type="Script" path="res://environment/interactibles/xr_pickup_function.gd" id="1_cqn8t"]
-[ext_resource type="PackedScene" uid="uid://b3rhymncbdh4c" path="res://player/hand_pose_matcher.tscn" id="2_xuhqq"]
+[ext_resource type="Script" path="res://environment/interactibles/xr_pickup_function.gd" id="1_47y78"]
+[ext_resource type="PackedScene" uid="uid://b3rhymncbdh4c" path="res://player/hand_pose_matcher.tscn" id="2_raifq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjlxy"]
 size = Vector3(0.128017, 0.103817, 0.178295)
 
 [node name="XRPickupFunction" type="BoneAttachment3D"]
-script = ExtResource("1_cqn8t")
+script = ExtResource("1_47y78")
 
-[node name="HandPoseMatcher" parent="." instance=ExtResource("2_xuhqq")]
+[node name="HandPoseMatcher" parent="." instance=ExtResource("2_raifq")]
 supported_poses = {
 "left": {
 "Fist": {

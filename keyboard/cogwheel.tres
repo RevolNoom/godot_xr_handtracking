@@ -1,22 +1,22 @@
 [gd_resource type="ArrayMesh" load_steps=6 format=3 uid="uid://d2op556ohjgii"]
 
-[ext_resource type="Texture2D" uid="uid://dnlj4sm6pfoir" path="res://assets/cc0_-_gear/textures/Gear_baseColor.png" id="1_ngyxv"]
-[ext_resource type="Texture2D" uid="uid://dab6k0r1yv080" path="res://assets/cc0_-_gear/textures/Gear_metallicRoughness.png" id="2_umwr8"]
-[ext_resource type="Texture2D" uid="uid://ccwlec27w681u" path="res://assets/cc0_-_gear/textures/Gear_normal.png" id="3_evefk"]
+[ext_resource type="Texture2D" uid="uid://dnlj4sm6pfoir" path="res://assets/cc0_-_gear/textures/Gear_baseColor.png" id="1_bbx52"]
+[ext_resource type="Texture2D" uid="uid://dab6k0r1yv080" path="res://assets/cc0_-_gear/textures/Gear_metallicRoughness.png" id="2_hvq3i"]
+[ext_resource type="Texture2D" uid="uid://ccwlec27w681u" path="res://assets/cc0_-_gear/textures/Gear_normal.png" id="3_dfpaf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lv65c"]
 resource_name = "Gear"
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_ngyxv")
+albedo_texture = ExtResource("1_bbx52")
 metallic = 1.0
-metallic_texture = ExtResource("2_umwr8")
+metallic_texture = ExtResource("2_hvq3i")
 metallic_texture_channel = 2
-roughness_texture = ExtResource("2_umwr8")
+roughness_texture = ExtResource("2_hvq3i")
 roughness_texture_channel = 1
 normal_enabled = true
-normal_texture = ExtResource("3_evefk")
+normal_texture = ExtResource("3_dfpaf")
 ao_enabled = true
-ao_texture = ExtResource("2_umwr8")
+ao_texture = ExtResource("2_hvq3i")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_d0kfr"]
 _surfaces = [{

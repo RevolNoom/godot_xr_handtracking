@@ -1,12 +1,12 @@
 [gd_scene load_steps=29 format=3 uid="uid://d3erlk2vajf4k"]
 
-[ext_resource type="Script" path="res://player/xr_tracked_hand.gd" id="1_kb3rw"]
-[ext_resource type="Texture2D" uid="uid://cl8tyr66b3gw3" path="res://addons/xr-kit/physics-movement/assets/valve_hand_models/textures/vr_glove_color.jpg" id="2_tok5w"]
-[ext_resource type="Texture2D" uid="uid://64tirme2xbtf" path="res://addons/xr-kit/physics-movement/assets/valve_hand_models/left_hand_file2.png" id="3_5j2yj"]
-[ext_resource type="PackedScene" uid="uid://dhw38t4v4v4vg" path="res://environment/interactibles/xr_pickup_function.tscn" id="4_puc7e"]
+[ext_resource type="Script" path="res://player/xr_tracked_hand.gd" id="1_h78p3"]
+[ext_resource type="Texture2D" uid="uid://cl8tyr66b3gw3" path="res://addons/xr-kit/physics-movement/assets/valve_hand_models/textures/vr_glove_color.jpg" id="2_3hjqp"]
+[ext_resource type="Texture2D" uid="uid://64tirme2xbtf" path="res://addons/xr-kit/physics-movement/assets/valve_hand_models/left_hand_file2.png" id="3_ge12a"]
+[ext_resource type="PackedScene" uid="uid://dhw38t4v4v4vg" path="res://environment/interactibles/xr_pickup_function.tscn" id="4_2fjeb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6feo"]
-albedo_texture = ExtResource("2_tok5w")
+albedo_texture = ExtResource("2_3hjqp")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_17n1d"]
 resource_name = "glove"
@@ -17,7 +17,7 @@ vertex_color_use_as_albedo = true
 metallic = 0.5
 roughness = 0.748767
 normal_enabled = true
-normal_texture = ExtResource("3_5j2yj")
+normal_texture = ExtResource("3_ge12a")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ux2hl"]
 resource_name = "left_hand_Mesh001"
@@ -202,7 +202,7 @@ height = 0.0180182
 
 [node name="TrackedHandLeft" type="OpenXRHand"]
 hand_skeleton = NodePath("Skeleton3D")
-script = ExtResource("1_kb3rw")
+script = ExtResource("1_h78p3")
 
 [node name="Skeleton3D" type="Skeleton3D" parent="."]
 bones/0/name = "Wrist_L"
@@ -394,7 +394,7 @@ gi_mode = 0
 mesh = SubResource("ArrayMesh_ux2hl")
 skin = SubResource("Skin_nfr42")
 
-[node name="XRPickupFunction" parent="Skeleton3D" instance=ExtResource("4_puc7e")]
+[node name="XRPickupFunction" parent="Skeleton3D" instance=ExtResource("4_2fjeb")]
 transform = Transform3D(0.0836061, -0.97618, 0.200207, 0.996362, 0.0785602, -0.0330308, 0.0165158, 0.20224, 0.979197, -0.00943292, 0.00825829, -0.0503987)
 bone_name = "Palm_L"
 bone_idx = 25

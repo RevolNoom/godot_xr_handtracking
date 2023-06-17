@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dgqm4cyfdi7t3"]
+[gd_scene load_steps=14 format=3 uid="uid://dgqm4cyfdi7t3"]
 
 [ext_resource type="PackedScene" uid="uid://bo0s3t0w6gk7d" path="res://assets/pies/pies_type/berry_pie.tscn" id="1_rpfbq"]
 [ext_resource type="PackedScene" uid="uid://dtq62npobarrg" path="res://environment/Deliverable/monitor.tscn" id="2_5ngej"]
+[ext_resource type="PackedScene" uid="uid://brogfigy1htd2" path="res://blaster_dc_15.tscn" id="3_ksgsb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wchga"]
 rough = true
@@ -152,3 +153,6 @@ collision_mask = 3
 
 [node name="Monitor" parent="." instance=ExtResource("2_5ngej")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.465528, 0.911, 0.358129)
+
+[node name="BlasterDC15" parent="." instance=ExtResource("3_ksgsb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.460287, 1.2058, 0.129598)

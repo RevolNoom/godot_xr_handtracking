@@ -16,14 +16,24 @@ func _ready():
 	$PoseName.text = name
 	
 
+func apply_pose_on_hand(hand: Skeleton3D, pose: Dictionary):
+	for b in range(0, hand.get_bone_count()):
+		var bone = pose[str(b)]
+		var rot = Quaternion(bone[3], bone[4], bone[5], bone[6])
+		hand.set_bone_pose_rotation(b, rot)
+
 func _on_body_entered(_body):
 	if get_overlapping_bodies().size() == 1:
+		$Done.hide()
+		$Hands.hide()
 		$Timer.start()
 		set_process(true)
 
 
 func _on_body_exited(_body):
 	if get_overlapping_bodies().size() == 0:
+		$Done.hide()
+		$Hands.show()
 		$Timer.stop()
 		$TimeLeft.text = "0"
 		set_process(false)
@@ -34,6 +44,7 @@ func _process(_delta):
 
 
 func _on_timer_timeout():
+	$Done.show()
 	var a_random_bone = get_overlapping_bodies()[0]
 	var skeleton = a_random_bone.get_parent().get_parent() as Skeleton3D
 	var openxr_hand = skeleton.get_parent() as OpenXRHand
@@ -46,11 +57,13 @@ func _on_timer_timeout():
 		var bone_pos = skeleton.get_bone_pose_position(b)
 		var bone_rot = skeleton.get_bone_pose_rotation(b)
 		# Setting as Array to be able to save into JSON
-		pose_info[leftness][pose_name][b] = [bone_pos.x, bone_pos.y, bone_pos.z,
+		pose_info[leftness][pose_name][str(b)] = [bone_pos.x, bone_pos.y, bone_pos.z,
 									bone_rot.x, bone_rot.y, bone_rot.z, bone_rot.w]
 
+	apply_pose_on_hand($Hands.get_node(leftness), pose_info[leftness][pose_name])
 	emit_signal("recorded", pose_info)
 
 
 func _on_property_list_changed():
 	$PoseName.text = name
+
