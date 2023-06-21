@@ -13,7 +13,7 @@ signal picked_up(what)
 ## Signal emitted when the pickup drops something
 signal dropped(what)
 signal pose_updated(prev_pose: StringName, current_pose: StringName)
-signal transform_updated()
+signal transform_updated(_self)
 
 
 ## Pickup enabled property
@@ -48,7 +48,7 @@ func get_hand() -> Skeleton3D:
 
 
 func _on_Skeleton3D_bone_pose_changed(_bone_idx):
-	emit_signal("transform_updated")
+	emit_signal("transform_updated", self)
 
 
 func _get_pickareas_in_range() -> Array[XRPickArea]:
@@ -70,7 +70,6 @@ func _on_hand_pose_matcher_new_pose(previous_pose: StringName, pose: StringName)
 	elif not pose in _grab_point.pickup_poses:
 			_drop_object()
 			
-			
 	emit_signal("pose_updated", previous_pose, pose)
 
 
@@ -80,6 +79,11 @@ func _on_grab_area_area_entered(_area: Area3D):
 								_get_areas_pick_on_touch())
 		if closest_grabbable != null:
 			_pick_up_object_has(closest_grabbable)
+
+
+func _on_grab_area_area_exited(area):
+	if _grab_point == area:
+		_drop_object()
 
 
 func _get_closest_pickable(grabareas: Array[XRPickArea]):
@@ -125,7 +129,3 @@ func _drop_object() -> void:
 	_picked_object = null
 	_grab_point.let_go()
 	emit_signal("dropped", obj)
-
-
-
-

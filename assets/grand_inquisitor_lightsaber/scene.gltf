@@ -1,0 +1,602 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 4048,
+      "max": [
+        6.60062313079834,
+        -8.37794017791748,
+        -6.1461310386657715
+      ],
+      "min": [
+        -2.7192609310150146,
+        -19.780603408813477,
+        -7.493539810180664
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 48576,
+      "componentType": 5126,
+      "count": 4048,
+      "max": [
+        0.9999999403953552,
+        0.9999999403953552,
+        0.9999999403953552
+      ],
+      "min": [
+        -0.9999999403953552,
+        -0.9999999403953552,
+        -0.9999999403953552
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 4048,
+      "max": [
+        11.72349739074707,
+        14.028952598571777
+      ],
+      "min": [
+        -11.72349739074707,
+        -14.028952598571777
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 12396,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 97152,
+      "componentType": 5126,
+      "count": 1104,
+      "max": [
+        2.1400609016418457,
+        -11.82255744934082,
+        -6.099123001098633
+      ],
+      "min": [
+        1.1837079524993896,
+        -17.018245697021484,
+        -7.540548801422119
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 110400,
+      "componentType": 5126,
+      "count": 1104,
+      "max": [
+        0.1036519855260849,
+        0.1139921098947525,
+        0.9999999403953552
+      ],
+      "min": [
+        -0.9982549548149109,
+        -0.1139921098947525,
+        -0.9999999403953552
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 32384,
+      "componentType": 5126,
+      "count": 1104,
+      "max": [
+        2.857667922973633,
+        0.50661301612854
+      ],
+      "min": [
+        -2.857667922973633,
+        -0.50661301612854
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 49584,
+      "componentType": 5125,
+      "count": 5640,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 123648,
+      "componentType": 5126,
+      "count": 8219,
+      "max": [
+        7.088327884674072,
+        -7.50632905960083,
+        -6.01748514175415
+      ],
+      "min": [
+        -3.206965923309326,
+        -20.641033172607422,
+        -7.622186183929443
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 222276,
+      "componentType": 5126,
+      "count": 8219,
+      "max": [
+        0.9999999403953552,
+        0.9999999403953552,
+        0.9999999403953552
+      ],
+      "min": [
+        -0.9999999403953552,
+        -0.9999999403953552,
+        -0.9999999403953552
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 41216,
+      "componentType": 5126,
+      "count": 8219,
+      "max": [
+        12.440027236938477,
+        54.1419563293457
+      ],
+      "min": [
+        -12.440027236938477,
+        -54.141963958740234
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 72144,
+      "componentType": 5125,
+      "count": 32811,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 320904,
+      "componentType": 5126,
+      "count": 8734,
+      "max": [
+        6.7383341789245605,
+        -7.50632905960083,
+        -6.01748514175415
+      ],
+      "min": [
+        -2.8569719791412354,
+        -20.641033172607422,
+        -7.622186183929443
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 425712,
+      "componentType": 5126,
+      "count": 8734,
+      "max": [
+        0.9999999403953552,
+        0.9999999403953552,
+        0.9999999403953552
+      ],
+      "min": [
+        -0.9999999403953552,
+        -0.9999999403953552,
+        -0.9999999403953552
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 106968,
+      "componentType": 5126,
+      "count": 8734,
+      "max": [
+        13.077366828918457,
+        35.69215393066406
+      ],
+      "min": [
+        -13.077366828918457,
+        -35.23167419433594
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 203388,
+      "componentType": 5125,
+      "count": 29301,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 530520,
+      "componentType": 5126,
+      "count": 158,
+      "max": [
+        2.440680980682373,
+        29.11086654663086,
+        -6.319836139678955
+      ],
+      "min": [
+        1.440680980682373,
+        -57.25822830200195,
+        -7.319836139678955
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 532416,
+      "componentType": 5126,
+      "count": 158,
+      "max": [
+        0.9999999403953552,
+        0.9999999403953552,
+        0.9999999403953552
+      ],
+      "min": [
+        -0.9999999403953552,
+        -0.9999999403953552,
+        -0.9999999403953552
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 176840,
+      "componentType": 5126,
+      "count": 158,
+      "max": [
+        1.2699999809265137,
+        3.98982310295105
+      ],
+      "min": [
+        -99.05999755859375,
+        -3.98982310295105
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 320592,
+      "componentType": 5125,
+      "count": 564,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "RealKermitDaFrog (https://sketchfab.com/RealKermitDaFrog)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/grand-inquisitor-lightsaber-42a79f76947441c9b0d25562713cf5df",
+      "title": "Grand Inquisitor Lightsaber"
+    },
+    "generator": "Sketchfab-14.86.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 322848,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 178104,
+      "byteOffset": 322848,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 534312,
+      "byteOffset": 500952,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 1035264,
+      "uri": "scene.bin"
+    }
+  ],
+  "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_emissive_strength"
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_specular": {
+          "specularColorFactor": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "specularFactor": 0.0
+        }
+      },
+      "name": "material",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "roughnessFactor": 0.0
+      }
+    },
+    {
+      "alphaMode": "BLEND",
+      "doubleSided": true,
+      "emissiveFactor": [
+        0.3515325995004391,
+        0.0,
+        0.002124688884841871
+      ],
+      "extensions": {
+        "KHR_materials_emissive_strength": {
+          "emissiveStrength": 10.0
+        },
+        "KHR_materials_specular": {
+          "specularColorFactor": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "specularFactor": 1.0
+        }
+      },
+      "name": "1862731",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1.0,
+          1.0,
+          1.0,
+          0.6690249391177584
+        ],
+        "metallicFactor": 0.833770590137656,
+        "roughnessFactor": 0.0
+      }
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0.35153259950043925,
+        0.0,
+        0.0021246888848418712
+      ],
+      "extensions": {
+        "KHR_materials_emissive_strength": {
+          "emissiveStrength": 10.0
+        },
+        "KHR_materials_specular": {
+          "specularColorFactor": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "specularFactor": 0.0
+        }
+      },
+      "name": "1862731_1",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.7294119999999997,
+          0.10588200000000003,
+          0.12156899999999991,
+          1.0
+        ],
+        "roughnessFactor": 0.0
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_specular": {
+          "specularColorFactor": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "specularFactor": 0.0
+        }
+      },
+      "name": "191191191",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.74902,
+          0.74902,
+          0.74902,
+          1.0
+        ],
+        "roughnessFactor": 0.0
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_specular": {
+          "specularColorFactor": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "specularFactor": 0.0
+        }
+      },
+      "name": "244244244",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.956863,
+          0.956863,
+          0.956863,
+          1.0
+        ],
+        "roughnessFactor": 0.0
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Object_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Object_1",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 5,
+            "POSITION": 4,
+            "TEXCOORD_0": 6
+          },
+          "indices": 7,
+          "material": 2,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Object_2",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 9,
+            "POSITION": 8,
+            "TEXCOORD_0": 10
+          },
+          "indices": 11,
+          "material": 3,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Object_3",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 13,
+            "POSITION": 12,
+            "TEXCOORD_0": 14
+          },
+          "indices": 15,
+          "material": 4,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Object_4",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 17,
+            "POSITION": 16,
+            "TEXCOORD_0": 18
+          },
+          "indices": 19,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        0.019999999552965164,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        4.440891999238953e-18,
+        -0.019999999552965164,
+        0.0,
+        0.0,
+        0.019999999552965164,
+        4.440891999238953e-18,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "name": "Better Grand Inquisitor Lightsaber.obj.cleaner.materialmerger.gles"
+    },
+    {
+      "mesh": 0,
+      "name": "Object_2"
+    },
+    {
+      "mesh": 1,
+      "name": "Object_3"
+    },
+    {
+      "mesh": 2,
+      "name": "Object_4"
+    },
+    {
+      "mesh": 3,
+      "name": "Object_5"
+    },
+    {
+      "mesh": 4,
+      "name": "Object_6"
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ]
+}

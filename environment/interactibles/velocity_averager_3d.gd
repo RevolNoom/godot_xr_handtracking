@@ -23,7 +23,7 @@ extends Node3D
 		if not enabled and enable:
 			clear()
 		enabled = enable
-		set_process(enabled)
+		set_physics_process(enabled)
 
 
 var _total_deltas: float = 0
@@ -54,8 +54,11 @@ func average_linear_velocity() -> Vector3:
 	# Skip if no averages
 	if _total_deltas <= 0:
 		return Vector3.ZERO
+	var total_distance = 0
+	for distance in _linear_distances:
+		total_distance += distance.length()
 
-	return _sum_Vector3s(_linear_distances) / _total_deltas
+	return _sum_Vector3s(_linear_distances).normalized() * total_distance / _total_deltas
 
 
 ## Calculate the average angular velocity as a Vector3 euler-velocity
@@ -88,7 +91,7 @@ func _sum_Vector3s(vec3s: PackedVector3Array):
 	return total
 
 
-func _process(delta):
+func _physics_process(delta):
 	var linear_distance = global_transform.origin - _last_transform.origin
 	var angular_distance := (global_transform.basis * _last_transform.basis.inverse()).get_euler()
 	_add_distance(delta, linear_distance, angular_distance)

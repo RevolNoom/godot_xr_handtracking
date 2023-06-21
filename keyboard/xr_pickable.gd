@@ -20,7 +20,7 @@ func _on_grab_point_controller_picked_up(by_hand: XRPickupFunction, _at_grab_poi
 	pre_pick_up_hand_to_self_offset = global_transform.origin - by_hand.global_transform.origin
 	
 
-func _on_hand_pose_updated():
+func _on_hand_pose_updated(_picker):
 	var rot = func_pick_up.global_transform.basis.orthonormalized() * pre_pick_up_hand_orientation.inverse()
 	var offset = rot * pre_pick_up_hand_to_self_offset 
 	global_transform.origin = offset + func_pick_up.global_transform.origin

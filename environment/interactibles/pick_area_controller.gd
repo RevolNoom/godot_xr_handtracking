@@ -4,7 +4,7 @@ extends Node3D
 class_name XRPickAreaController
 
 signal picked_up(by_hand: Skeleton3D, pick_point: XRPickArea)
-signal dropped(by_hand)
+signal dropped(by_hand: Skeleton3D, pick_point: XRPickArea)
 
 # Amount of grab points that can be grabbed simultaneously
 # NOTE: It currently doesn't support more than 1 grab
@@ -51,10 +51,10 @@ func GetPickPoints() -> Array:
 
 
 # Called when this object is dropped
-func let_go(by_hand):
+func let_go(by_hand, pick_point):
 	_current_grabbers.erase(by_hand)
 	# let interested parties know
-	emit_signal("dropped", by_hand)
+	emit_signal("dropped", by_hand, pick_point)
 
 
 func _on_child_entered_tree(node):

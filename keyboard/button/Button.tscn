@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://keyboard/button/Button.gd" id="1_cl3qk"]
 [ext_resource type="Script" path="res://keyboard/button/Label.gd" id="2_1ngwx"]
-[ext_resource type="AudioStream" uid="uid://da1g22wwtkk6s" path="res://assets/mech-keyboard.mp3" id="3_8wdd8"]
+[ext_resource type="AudioStream" uid="uid://da1g22wwtkk6s" path="res://assets/SFX/mech-keyboard.mp3" id="3_8wdd8"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7abuy"]
 size = Vector3(0.03, 0.015, 0.03)

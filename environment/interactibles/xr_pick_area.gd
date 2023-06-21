@@ -20,8 +20,11 @@ func get_object():
 	return get_parent().get_object()
 
 
+func is_picked() -> bool:
+	return _grabbing_hand != null
+
+
 func is_pickable() -> bool:
-	#print("Grabpoint can pick up? " + str(enabled and _grabbing_hand == null and get_parent().can_pick_up()))
 	return enabled and _grabbing_hand == null and get_parent().can_pick_up()
 
 
@@ -29,8 +32,8 @@ func is_pickable() -> bool:
 # Otherwise returns null
 func picked_up(by_hand) -> Node3D:
 	if is_pickable():
-		get_parent()._on_grabpoint_pick_up(by_hand, self)
 		_grabbing_hand = by_hand
+		get_parent()._on_grabpoint_pick_up(by_hand, self)
 		return get_object()
 	return null
 
@@ -40,12 +43,11 @@ func let_go():
 		return
 	var gh = _grabbing_hand
 	_grabbing_hand = null
-	get_parent().let_go(gh)
+	get_parent().let_go(gh, self)
 
 
 func _get_configuration_warnings():
 	if get_parent() is XRPickAreaController:
 		return []
 	return ["This node must be child of XRPickAreaController."]
-
 

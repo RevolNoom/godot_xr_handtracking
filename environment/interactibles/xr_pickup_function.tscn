@@ -802,6 +802,7 @@ supported_poses = {
 }
 
 [node name="GrabArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, -0.0225458)
 collision_layer = 0
 collision_mask = 262144
 
@@ -814,3 +815,4 @@ pixel_size = 0.002
 
 [connection signal="new_pose" from="HandPoseMatcher" to="." method="_on_hand_pose_matcher_new_pose"]
 [connection signal="area_entered" from="GrabArea" to="." method="_on_grab_area_area_entered"]
+[connection signal="area_exited" from="GrabArea" to="." method="_on_grab_area_area_exited"]

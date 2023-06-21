@@ -4,4 +4,3 @@
 
 [node name="VelocityAverager3D" type="Node3D"]
 script = ExtResource("1_vlfon")
-enabled = null

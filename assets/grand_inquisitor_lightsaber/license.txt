@@ -1,0 +1,11 @@
+Model Information:
+* title:	Grand Inquisitor Lightsaber
+* source:	https://sketchfab.com/3d-models/grand-inquisitor-lightsaber-42a79f76947441c9b0d25562713cf5df
+* author:	RealKermitDaFrog (https://sketchfab.com/RealKermitDaFrog)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Grand Inquisitor Lightsaber" (https://sketchfab.com/3d-models/grand-inquisitor-lightsaber-42a79f76947441c9b0d25562713cf5df) by RealKermitDaFrog (https://sketchfab.com/RealKermitDaFrog) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

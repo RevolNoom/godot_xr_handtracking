@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://d3erlk2vajf4k"]
+[gd_scene load_steps=30 format=3 uid="uid://d3erlk2vajf4k"]
 
 [ext_resource type="Script" path="res://player/xr_tracked_hand.gd" id="1_h78p3"]
 [ext_resource type="Texture2D" uid="uid://cl8tyr66b3gw3" path="res://addons/xr-kit/physics-movement/assets/valve_hand_models/textures/vr_glove_color.jpg" id="2_3hjqp"]
 [ext_resource type="Texture2D" uid="uid://64tirme2xbtf" path="res://addons/xr-kit/physics-movement/assets/valve_hand_models/left_hand_file2.png" id="3_ge12a"]
 [ext_resource type="PackedScene" uid="uid://dhw38t4v4v4vg" path="res://environment/interactibles/xr_pickup_function.tscn" id="4_2fjeb"]
+[ext_resource type="PackedScene" uid="uid://clnlkqswjlgsr" path="res://keyboard/wrist_keyboard.tscn" id="5_bfufg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6feo"]
 albedo_texture = ExtResource("2_3hjqp")
@@ -678,3 +679,11 @@ collision_mask = 7
 [node name="CollisionShape3D20" type="CollisionShape3D" parent="Skeleton3D/Physical Bone Little_Distal_L/Bone20"]
 transform = Transform3D(-0.244292, 0.61537, -0.749427, 0.941218, -0.0354635, -0.335931, -0.233299, -0.78744, -0.570535, 0.0215523, -0.0459714, -0.126374)
 shape = SubResource("CapsuleShape3D_bn7ie")
+
+[node name="Keyboard" type="BoneAttachment3D" parent="Skeleton3D"]
+transform = Transform3D(0, -1, 8.74233e-08, 1, 0, -3.0202e-07, 3.0202e-07, 8.74233e-08, 1, 0, 0, 0.01)
+bone_name = "Wrist_L"
+bone_idx = 0
+
+[node name="WristKeyboard" parent="Skeleton3D/Keyboard" instance=ExtResource("5_bfufg")]
+transform = Transform3D(-1, 0, -8.74228e-08, -1.69407e-21, 1, 0, 8.74228e-08, 0, -1, 0, 0.04, 0)

@@ -1,0 +1,249 @@
+[gd_scene load_steps=7 format=3 uid="uid://clnlkqswjlgsr"]
+
+[ext_resource type="PackedScene" uid="uid://depddl1urdch2" path="res://keyboard/button/Button.tscn" id="1_70nug"]
+[ext_resource type="Script" path="res://keyboard/wrist_keyboard.gd" id="1_i0b2c"]
+[ext_resource type="Texture2D" uid="uid://g7qtxqbwsaht" path="res://icon.svg" id="3_jthj8"]
+[ext_resource type="Script" path="res://environment/Deliverable/textbox.gd" id="4_3td63"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u4ccj"]
+size = Vector3(0.03, 0.007, 0.03)
+
+[sub_resource type="BoxMesh" id="BoxMesh_51a2n"]
+size = Vector3(0.02, 0.005, 0.02)
+
+[node name="WristKeyboard" type="Node3D"]
+script = ExtResource("1_i0b2c")
+
+[node name="Power" parent="." instance=ExtResource("1_70nug")]
+mesh = SubResource("BoxMesh_u4ccj")
+toggle_mode = true
+
+[node name="Sprite3D" type="Sprite3D" parent="Power"]
+transform = Transform3D(-1.09278e-09, 0.025, 0, 1.09278e-09, 4.77671e-17, -0.025, -0.025, -1.09278e-09, -1.09278e-09, 0, 0.004, 0)
+texture = ExtResource("3_jthj8")
+
+[node name="Keys" type="Node3D" parent="."]
+transform = Transform3D(0.645058, -0.764134, 0, 0.764134, 0.645058, 0, 0, 0, 1, 0.0384562, 0.0506592, 0)
+visible = false
+
+[node name="Row1" type="Node3D" parent="Keys"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0, 0)
+
+[node name="Q" parent="Keys/Row1" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.1125)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 81
+custom_label = "Q"
+
+[node name="W" parent="Keys/Row1" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.0875)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 87
+custom_label = "W"
+
+[node name="E" parent="Keys/Row1" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.0625)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 69
+custom_label = "E"
+
+[node name="R" parent="Keys/Row1" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.0375)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 82
+custom_label = "R"
+
+[node name="T" parent="Keys/Row1" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.0125)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 84
+custom_label = "T"
+
+[node name="Y" parent="Keys/Row1" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.0125)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 89
+custom_label = "Y"
+
+[node name="U" parent="Keys/Row1" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.0375)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 85
+custom_label = "U"
+
+[node name="I" parent="Keys/Row1" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.0625)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 73
+custom_label = "I"
+
+[node name="O" parent="Keys/Row1" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.0875)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 79
+custom_label = "O"
+
+[node name="P" parent="Keys/Row1" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.1125)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 80
+custom_label = "P"
+
+[node name="Row2" type="Node3D" parent="Keys"]
+
+[node name="A" parent="Keys/Row2" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.1125)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 65
+custom_label = "A"
+
+[node name="S" parent="Keys/Row2" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.0875)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 83
+custom_label = "S"
+
+[node name="D" parent="Keys/Row2" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.0625)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 68
+custom_label = "D"
+
+[node name="F" parent="Keys/Row2" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.0375)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 70
+custom_label = "F"
+
+[node name="G" parent="Keys/Row2" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.0125)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 71
+custom_label = "G"
+
+[node name="H" parent="Keys/Row2" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.0125)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 72
+custom_label = "H"
+
+[node name="J" parent="Keys/Row2" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.0375)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 74
+custom_label = "J"
+
+[node name="K" parent="Keys/Row2" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.0625)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 75
+custom_label = "K"
+
+[node name="L" parent="Keys/Row2" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.0875)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 76
+custom_label = "L"
+
+[node name="Backspace" parent="Keys/Row2" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.1125)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 4194308
+custom_label = "Del"
+letter_to_button_ratio = 0.6
+
+[node name="Row3" type="Node3D" parent="Keys"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025, 0, 0)
+
+[node name="Z" parent="Keys/Row3" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.0875)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 90
+custom_label = "Z"
+
+[node name="X" parent="Keys/Row3" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.0625)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 88
+custom_label = "X"
+
+[node name="C" parent="Keys/Row3" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.0375)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 67
+custom_label = "C"
+
+[node name="V" parent="Keys/Row3" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.0125)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 86
+custom_label = "V"
+
+[node name="B" parent="Keys/Row3" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.0125)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 66
+custom_label = "B"
+
+[node name="N" parent="Keys/Row3" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.0375)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 78
+custom_label = "N"
+
+[node name="M" parent="Keys/Row3" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.0625)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 77
+custom_label = "M"
+
+[node name="Enter" parent="Keys/Row3" instance=ExtResource("1_70nug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.0875)
+mesh = SubResource("BoxMesh_51a2n")
+enabled = false
+key = 4194309
+custom_label = "Enter"
+letter_to_button_ratio = 0.4
+
+[node name="Label" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0747075, 0.13, 0)
+visible = false
+pixel_size = 0.001
+text = "Code: "
+
+[node name="Code" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0427501, 0.101104, 0)
+visible = false
+pixel_size = 0.001
+script = ExtResource("4_3td63")
+
+[connection signal="pressed" from="Power" to="." method="_on_power_pressed"]
+[connection signal="unpressed" from="Power" to="." method="_on_power_unpressed"]
+[connection signal="text_submitted" from="Code" to="." method="_on_code_text_submitted"]

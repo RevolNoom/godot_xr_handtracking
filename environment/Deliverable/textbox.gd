@@ -7,8 +7,9 @@ signal text_changed(new_text: String)
 
 
 const modifier_keys = [KEY_SHIFT, KEY_CTRL, KEY_ALT]
-
-func _on_vr_keyboard_pressed(key: InputEventKey):
+	
+	
+func put_char(key: InputEventKey):
 	if key.keycode in modifier_keys:
 		return
 	
@@ -40,8 +41,12 @@ func _on_vr_keyboard_pressed(key: InputEventKey):
 
 	if text_modified:
 		emit_signal("text_changed", text)
-		
-		
+
+
+func _on_vr_keyboard_pressed(key: InputEventKey):
+	put_char(key)
+
+
 func is_ascii(keycode: Key):
 	return KEY_A <= keycode and keycode <= KEY_Z
 

@@ -7,7 +7,7 @@ extends RigidBody3D
 
 
 signal picked(_self, by_hand: XRPickupFunction, at_grab_point: XRPickArea)
-signal dropped(_self, by_hand: XRPickupFunction)
+signal dropped(_self, by_hand: XRPickupFunction, at_grab_point: XRPickArea)
 
 
 # Default layer for held objects is 17:held-object
@@ -21,22 +21,18 @@ var original_collision_layer: int
 var original_collision_mask: int
 
 
-var pre_pick_up_hand_orientation: Basis
-var pre_pick_up_self_orientation: Basis
-var pre_pick_up_hand_to_self_offset: Vector3
-var picker: XRPickupFunction
+var pick_info:= PickInfo.new()
 
 
 func _on_pick_area_controller_picked_up(by_hand: XRPickupFunction, at_grab_point: XRPickArea):
 	freeze = true
 	$VelocityAverager3D.enabled = true
-	by_hand.connect("transform_updated", _on_hand_transform_updated)
 	
-	picker = by_hand
-	
-	pre_pick_up_hand_orientation = by_hand.global_transform.basis.orthonormalized()
-	pre_pick_up_self_orientation = global_transform.basis
-	pre_pick_up_hand_to_self_offset = global_transform.origin - by_hand.global_transform.origin
+	pick_info.picker = by_hand
+	pick_info.picker_org_rot = pick_info.picker.global_transform.basis.orthonormalized()
+	pick_info.self_org_rot = global_transform.basis
+	pick_info.picker_self_offset = global_transform.origin - pick_info.picker.global_transform.origin
+	pick_info.picker.connect("transform_updated", _on_hand_transform_updated)
 	
 	# Remember the mode before pickup
 	original_collision_layer = collision_layer
@@ -48,14 +44,14 @@ func _on_pick_area_controller_picked_up(by_hand: XRPickupFunction, at_grab_point
 	emit_signal("picked", self, by_hand, at_grab_point)
 
 
-func _on_hand_transform_updated():
-	var rot = picker.global_transform.basis.orthonormalized() * pre_pick_up_hand_orientation.inverse()
-	var offset = rot * pre_pick_up_hand_to_self_offset 
-	global_transform.origin = offset + picker.global_transform.origin
-	global_transform.basis = rot * pre_pick_up_self_orientation
+func _on_hand_transform_updated(_picker):
+	var rot = pick_info.picker.global_transform.basis.orthonormalized() * pick_info.picker_org_rot.inverse()
+	var offset = rot * pick_info.picker_self_offset
+	global_transform.origin = offset + pick_info.picker.global_transform.origin
+	global_transform.basis = rot * pick_info.self_org_rot
 
-	
-func _on_pick_area_controller_dropped(by_hand: XRPickupFunction):
+
+func _on_pick_area_controller_dropped(by_hand: XRPickupFunction, pick_point: XRPickArea):
 	freeze = false
 	$VelocityAverager3D.enabled = false
 	by_hand.disconnect("transform_updated", _on_hand_transform_updated)
@@ -63,6 +59,16 @@ func _on_pick_area_controller_dropped(by_hand: XRPickupFunction):
 	collision_layer = original_collision_layer
 	
 	linear_velocity = $VelocityAverager3D.average_linear_velocity()
+	#print("Throw linear_velocity: " + str(linear_velocity))
+	#print("distances deltas: " + str($VelocityAverager3D._linear_distances))
 	angular_velocity = $VelocityAverager3D.average_angular_velocity()
+	#print("Throw angular_velocity: " + str(linear_velocity))
 
-	emit_signal("dropped", self, by_hand)
+	emit_signal("dropped", self, by_hand, pick_point)
+
+
+class PickInfo:
+	var picker: XRPickupFunction
+	var picker_org_rot: Basis	# Picker's rotation at pick-up moment
+	var self_org_rot: Basis	# Self's rotation at pick-up moment
+	var picker_self_offset: Vector3
