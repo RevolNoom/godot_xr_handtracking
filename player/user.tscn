@@ -17,9 +17,7 @@ tracker = &"right_hand"
 script = ExtResource("1_igs7e")
 
 [node name="TrackedHandLeft" parent="." instance=ExtResource("2_bncog")]
-visible = false
 
 [node name="TrackedHandRight" parent="." instance=ExtResource("3_c4i0j")]
-visible = false
 
 [connection signal="button_pressed" from="Right" to="Right" method="_on_button_pressed"]

@@ -389,6 +389,14 @@ bones/25/position = Vector3(0.0082902, 0.00927313, -0.0510244)
 bones/25/rotation = Quaternion(0.101224, -0.0124619, -0.0407884, 0.993949)
 bones/25/scale = Vector3(1, 1, 1)
 
+[node name="Keyboard" type="BoneAttachment3D" parent="Skeleton3D"]
+transform = Transform3D(0, -1, 8.74233e-08, 1, 0, -3.0202e-07, 3.0202e-07, 8.74233e-08, 1, -0.000159788, -3.19244e-05, 0.000625709)
+bone_name = "Wrist_L"
+bone_idx = 0
+
+[node name="WristKeyboard" parent="Skeleton3D/Keyboard" instance=ExtResource("5_bfufg")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.03, 0)
+
 [node name="vr_glove" type="MeshInstance3D" parent="Skeleton3D"]
 material_override = SubResource("StandardMaterial3D_v6feo")
 gi_mode = 0
@@ -397,8 +405,11 @@ skin = SubResource("Skin_nfr42")
 
 [node name="XRPickupFunction" parent="Skeleton3D" instance=ExtResource("4_2fjeb")]
 transform = Transform3D(0.0836061, -0.97618, 0.200207, 0.996362, 0.0785602, -0.0330308, 0.0165158, 0.20224, 0.979197, -0.00943292, 0.00825829, -0.0503987)
+rotation_edit_mode = 2
 bone_name = "Palm_L"
 bone_idx = 25
+
+[node name="Marker3D" type="Marker3D" parent="Skeleton3D/XRPickupFunction"]
 
 [node name="Physical Bone Wrist_L" type="BoneAttachment3D" parent="Skeleton3D"]
 transform = Transform3D(0, -1, 8.74233e-08, 1, 0, -3.0202e-07, 3.0202e-07, 8.74233e-08, 1, -0.000159788, -3.19244e-05, 0.000625709)
@@ -679,11 +690,3 @@ collision_mask = 7
 [node name="CollisionShape3D20" type="CollisionShape3D" parent="Skeleton3D/Physical Bone Little_Distal_L/Bone20"]
 transform = Transform3D(-0.244292, 0.61537, -0.749427, 0.941218, -0.0354635, -0.335931, -0.233299, -0.78744, -0.570535, 0.0215523, -0.0459714, -0.126374)
 shape = SubResource("CapsuleShape3D_bn7ie")
-
-[node name="Keyboard" type="BoneAttachment3D" parent="Skeleton3D"]
-transform = Transform3D(0, -1, 8.74233e-08, 1, 0, -3.0202e-07, 3.0202e-07, 8.74233e-08, 1, 0, 0, 0.01)
-bone_name = "Wrist_L"
-bone_idx = 0
-
-[node name="WristKeyboard" parent="Skeleton3D/Keyboard" instance=ExtResource("5_bfufg")]
-transform = Transform3D(-1, 0, -8.74228e-08, -1.69407e-21, 1, 0, 8.74228e-08, 0, -1, 0, 0.04, 0)

@@ -1,21 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1vqucnnhdppc"]
+[gd_scene load_steps=3 format=3 uid="uid://b1vqucnnhdppc"]
 
 [ext_resource type="Script" path="res://environment/Deliverable/world.gd" id="1_va1yl"]
 [ext_resource type="PackedScene" uid="uid://bqpaollanvd23" path="res://level.tscn" id="3_8vscc"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s0v13"]
-
-[sub_resource type="Sky" id="Sky_nthsk"]
-sky_material = SubResource("ProceduralSkyMaterial_s0v13")
-
-[sub_resource type="Environment" id="Environment_dfmb0"]
-background_mode = 2
-sky = SubResource("Sky_nthsk")
-
 [node name="world" type="Node3D"]
 script = ExtResource("1_va1yl")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_dfmb0")
 
 [node name="scene" parent="." instance=ExtResource("3_8vscc")]

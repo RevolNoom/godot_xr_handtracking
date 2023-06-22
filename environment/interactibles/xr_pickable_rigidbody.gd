@@ -24,16 +24,28 @@ var original_collision_mask: int
 var pick_info:= PickInfo.new()
 
 
-func _on_pick_area_controller_picked_up(by_hand: XRPickupFunction, at_grab_point: XRPickArea):
+func _on_pick_area_controller_picked_up(by_hand: XRPickupFunction, pick_area: XRPickArea):
 	freeze = true
 	$VelocityAverager3D.enabled = true
 	
+	# Check for hand snaps
+	# And re-orient this object so that the XRHandSnap
+	# has identical transform
+	var snap = pick_area.get_hand_snap(by_hand.get_hand())
+	if snap:
+		global_transform.basis = by_hand.global_transform.basis.orthonormalized()\
+				* snap.global_transform.basis.inverse().orthonormalized()\
+				* global_transform.basis
+		global_position += by_hand.global_position - snap.global_position
+	
+	
 	pick_info.picker = by_hand
+	pick_info.picker.connect("transform_updated", _on_hand_transform_updated)
 	pick_info.picker_org_rot = pick_info.picker.global_transform.basis.orthonormalized()
 	pick_info.self_org_rot = global_transform.basis
 	pick_info.picker_self_offset = global_transform.origin - pick_info.picker.global_transform.origin
-	pick_info.picker.connect("transform_updated", _on_hand_transform_updated)
-	
+
+
 	# Remember the mode before pickup
 	original_collision_layer = collision_layer
 	original_collision_mask = collision_mask
@@ -41,7 +53,7 @@ func _on_pick_area_controller_picked_up(by_hand: XRPickupFunction, at_grab_point
 	collision_layer = picked_up_layer
 	collision_mask = picked_up_mask
 	
-	emit_signal("picked", self, by_hand, at_grab_point)
+	emit_signal("picked", self, by_hand, pick_area)
 
 
 func _on_hand_transform_updated(_picker):

@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://ck7so3jgwvjsu"]
+[gd_scene load_steps=6 format=3 uid="uid://ck7so3jgwvjsu"]
+
+[ext_resource type="Script" path="res://lazer_bullet.gd" id="1_l01ov"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqvug"]
 resource_name = "Material.001"
@@ -47,10 +49,12 @@ height = 0.0917691
 
 [node name="LazerBullet" type="RigidBody3D"]
 collision_layer = 8
-collision_mask = 3
+collision_mask = 19
+input_ray_pickable = false
 mass = 0.02
 continuous_cd = true
 freeze_mode = 1
+script = ExtResource("1_l01ov")
 
 [node name="Cube_Material_001_0" type="MeshInstance3D" parent="."]
 transform = Transform3D(-3.49691e-10, 0.048, -3.49691e-10, 0, -2.09815e-09, -0.008, -0.008, -2.09815e-09, 1.52855e-17, 0, 0, 0)
@@ -60,3 +64,9 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -0.0121002, 5.28917e-10, 5.28917e-10)
 shape = SubResource("CapsuleShape3D_y2lmn")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

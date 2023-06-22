@@ -1,6 +1,5 @@
 extends XRPickableRigidBody
 
-	
 
 func _on_pick_area_controller_picked_up(by_hand: XRPickupFunction, pick_point: XRPickArea):
 	super._on_pick_area_controller_picked_up(by_hand, pick_point)

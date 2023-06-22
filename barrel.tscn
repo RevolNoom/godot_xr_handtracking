@@ -8,6 +8,6 @@ script = ExtResource("1_kxqxg")
 
 [node name="ShootAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("1_w6y2o")
-volume_db = 30.0
+volume_db = 20.0
 
 [node name="Dump" type="Node" parent="."]

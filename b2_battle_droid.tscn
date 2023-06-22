@@ -1,9 +1,10 @@
-[gd_scene load_steps=117 format=3 uid="uid://d1nakgd2uewss"]
+[gd_scene load_steps=118 format=3 uid="uid://d1nakgd2uewss"]
 
 [ext_resource type="Texture2D" uid="uid://cebtpyu1rcvw1" path="res://assets/battle_droid_b2/textures/Metal_baseColor.png" id="1_c77y3"]
 [ext_resource type="Script" path="res://b2_battle_droid.gd" id="1_cvi2u"]
 [ext_resource type="Texture2D" uid="uid://vss0i1jigbc8" path="res://assets/battle_droid_b2/textures/Metal_metallicRoughness.png" id="2_gdqxn"]
 [ext_resource type="PackedScene" uid="uid://2fk84gbpnj6p" path="res://barrel.tscn" id="4_2pcgo"]
+[ext_resource type="Script" path="res://breakable_robot_part.gd" id="4_ny833"]
 [ext_resource type="AudioStream" uid="uid://bsh4fouslrlpf" path="res://assets/SFX/big-thud2-83216.mp3" id="5_u1npc"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ywwep"]
@@ -1520,7 +1521,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 1.5, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.03, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -0.005, 0), Vector3(0, 0, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -2051,7 +2052,7 @@ collision_mask = 3
 freeze = true
 freeze_mode = 1
 script = ExtResource("1_cvi2u")
-speed = 0.77
+speed = 0.8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0358499, 0.00762116)
@@ -2070,10 +2071,10 @@ update_scale = false
 [node name="Body" type="RigidBody3D" parent="Hip"]
 transform = Transform3D(1, 0, 0, 0, 0.999993, 0, 0, 0, 0.999993, 0, 0.1, 0)
 rotation_edit_mode = 1
-collision_layer = 2
-collision_mask = 16
+collision_layer = 18
 freeze = true
 freeze_mode = 1
+script = ExtResource("4_ny833")
 
 [node name="GroinCS" type="CollisionShape3D" parent="Hip/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0358499, 0.00762116)
@@ -2126,7 +2127,7 @@ mesh = SubResource("ArrayMesh_wl1tq")
 skeleton = NodePath("")
 
 [node name="Eyes" type="MeshInstance3D" parent="Hip/Body/Groin/Torso/Ribs/LowerChest/Chest/Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0501677, 0.243674)
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0.050167, 0.245658)
 mesh = SubResource("ArrayMesh_gvvqf")
 skeleton = NodePath("")
 
@@ -2161,8 +2162,10 @@ update_scale = false
 
 [node name="UpperArmRight" type="RigidBody3D" parent="Hip/Body/Groin/Torso/Ribs/LowerChest/Chest/Head/Shoulders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373, 0, 0)
+collision_layer = 18
 freeze = true
 freeze_mode = 1
+script = ExtResource("4_ny833")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hip/Body/Groin/Torso/Ribs/LowerChest/Chest/Head/Shoulders/UpperArmRight"]
 transform = Transform3D(1, 1.86265e-08, 2.23517e-08, 3.72529e-09, 1, -2.98023e-08, -2.98023e-08, 2.98023e-08, 1, 0.372538, -0.247766, -2.98023e-08)
@@ -2201,9 +2204,11 @@ use_global_coordinates = false
 update_scale = false
 
 [node name="Forearm" type="RigidBody3D" parent="Hip/Body/Groin/Torso/Ribs/LowerChest/Chest/Head/Shoulders/UpperArmRight/UpperArmRight/Elbow"]
-transform = Transform3D(0.999994, 0, 0, 0, 0.999994, 0, 0, 0, 0.999989, -0.520996, 0, 5.96046e-08)
+transform = Transform3D(0.999994, 3.72527e-09, -2.9802e-08, -3.72527e-09, 0.999994, 1.19208e-07, 2.98021e-08, -1.19208e-07, 0.999989, -0.520996, 0, 5.96046e-08)
+collision_layer = 18
 freeze = true
 freeze_mode = 1
+script = ExtResource("4_ny833")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hip/Body/Groin/Torso/Ribs/LowerChest/Chest/Head/Shoulders/UpperArmRight/UpperArmRight/Elbow/Forearm"]
 transform = Transform3D(0.918446, -0.395546, 0, 0.395545, 0.918446, 7.10543e-15, -1.77636e-15, -1.42109e-14, 0.999999, 0, 0, 0)
@@ -2258,8 +2263,10 @@ update_scale = false
 
 [node name="UpperarmLeft" type="RigidBody3D" parent="Hip/Body/Groin/Torso/Ribs/LowerChest/Chest/Head/Shoulders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.373, 0, 0)
+collision_layer = 18
 freeze = true
 freeze_mode = 1
+script = ExtResource("4_ny833")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hip/Body/Groin/Torso/Ribs/LowerChest/Chest/Head/Shoulders/UpperarmLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373, -0.0646363, 0)
@@ -2301,8 +2308,10 @@ update_scale = false
 
 [node name="Forearm" type="RigidBody3D" parent="Hip/Body/Groin/Torso/Ribs/LowerChest/Chest/Head/Shoulders/UpperarmLeft/UpperarmLeft/Elbow"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.524905, 0, 0)
+collision_layer = 18
 freeze = true
 freeze_mode = 1
+script = ExtResource("4_ny833")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hip/Body/Groin/Torso/Ribs/LowerChest/Chest/Head/Shoulders/UpperarmLeft/UpperarmLeft/Elbow/Forearm"]
 transform = Transform3D(0.918446, 0.395546, 0, -0.395545, 0.918446, 0, 0, 0, 1, 0, 0, 0)
@@ -2351,8 +2360,10 @@ update_scale = false
 
 [node name="ThighLeft" type="RigidBody3D" parent="Hip"]
 transform = Transform3D(1, 0, 0, 0, 0.999996, 0, 0, 0, 0.999996, 0.00937216, 0.0285244, -0.00875177)
+collision_layer = 18
 freeze = true
 freeze_mode = 1
+script = ExtResource("4_ny833")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hip/ThighLeft"]
 shape = SubResource("ConvexPolygonShape3D_g5vfv")
@@ -2374,8 +2385,10 @@ update_scale = false
 
 [node name="Shin" type="RigidBody3D" parent="Hip/ThighLeft/ThighLeft/Knee"]
 transform = Transform3D(1, 0, 0, 0, 0.999988, 0, 0, 0, 0.999988, 0, 0, 0)
+collision_layer = 18
 freeze = true
 freeze_mode = 1
+script = ExtResource("4_ny833")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hip/ThighLeft/ThighLeft/Knee/Shin"]
 transform = Transform3D(1, -1.65775e-07, 4.17233e-07, 2.42144e-08, 1, 7.82311e-08, -1.19209e-07, -8.94069e-08, 1, 0.0118082, -0.3025, -0.0180166)
@@ -2398,8 +2411,10 @@ update_scale = false
 
 [node name="ThighRight" type="RigidBody3D" parent="Hip"]
 transform = Transform3D(1, 0, 0, 0, 0.999997, 0, 0, 0, 0.999997, 0, 0, 0)
+collision_layer = 18
 freeze = true
 freeze_mode = 1
+script = ExtResource("4_ny833")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hip/ThighRight"]
 shape = SubResource("ConvexPolygonShape3D_5h5h4")
@@ -2419,8 +2434,10 @@ use_global_coordinates = false
 update_scale = false
 
 [node name="Shin" type="RigidBody3D" parent="Hip/ThighRight/ThighRight/Knee"]
+collision_layer = 18
 freeze = true
 freeze_mode = 1
+script = ExtResource("4_ny833")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hip/ThighRight/ThighRight/Knee/Shin"]
 transform = Transform3D(1, 0, 0, 0, 1, 1.14087e-08, 0, -1.14087e-08, 1, -0.0118081, -0.3025, -0.0180168)
@@ -2458,7 +2475,6 @@ libraries = {
 [node name="Marker3D" type="Marker3D" parent="Node"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01524, 0)
 
-[connection signal="body_entered" from="Hip/Body" to="." method="_on_body_body_entered"]
 [connection signal="body_entered" from="Hip/Body/Groin/Torso/Ribs/LowerChest/Chest/Head/Heart" to="." method="_on_heart_body_entered"]
 [connection signal="animation_finished" from="Aim" to="." method="_on_aim_animation_finished"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

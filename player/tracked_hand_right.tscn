@@ -400,6 +400,8 @@ transform = Transform3D(0.0836061, 0.97618, -0.200206, -0.0165157, 0.20224, 0.97
 bone_name = "Palm_R"
 bone_idx = 25
 
+[node name="Marker3D" type="Marker3D" parent="Skeleton3D/XRPickupFunction"]
+
 [node name="Wrist_R" type="BoneAttachment3D" parent="Skeleton3D"]
 transform = Transform3D(0, 1, 0, 0, 0, 1, 1, 0, 0, 0.000159787, 0.000625708, 3.19246e-05)
 bone_name = "Wrist_R"
