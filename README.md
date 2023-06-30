@@ -8,6 +8,7 @@
 
 - Latest tested Godot version: v4.1.beta2.official.a2575cba4
 - Tested headset: Meta Quest 2
+
 You can find the example scene in example/main_scene.tscn
 
 ## WHAT THIS TOOLKIT PROVIDES:
