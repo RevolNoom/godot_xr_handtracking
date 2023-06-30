@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://muveaa55k24c"]
+
+[ext_resource type="Script" path="res://XRHandtrackingTools/PoseRecordingRoom/pose_recording_room.gd" id="1_3c0hr"]
+[ext_resource type="PackedScene" uid="uid://1n1kke68mut5" path="res://XRHandtrackingTools/TrackedHands/user.tscn" id="2_q88q5"]
+[ext_resource type="PackedScene" uid="uid://7ur344am626x" path="res://XRHandtrackingTools/PoseRecordingRoom/hand_pose_capture_area.tscn" id="3_5mrsn"]
+[ext_resource type="PackedScene" uid="uid://depddl1urdch2" path="res://keyboard/button/Button.tscn" id="4_doyla"]
+
+[node name="PoseRecordingRoom" type="Node3D"]
+script = ExtResource("1_3c0hr")
+
+[node name="User" parent="." instance=ExtResource("2_q88q5")]
+transform = Transform3D(0.766796, 0, -0.641891, 0, 1, 0, 0.641891, 0, 0.766796, -1.29007, 0, -0.127286)
+
+[node name="PoseBoard" type="Node3D" parent="."]
+
+[node name="AllPoses" type="Node3D" parent="PoseBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43259, 0.902837, -0.432391)
+
+[node name="One" parent="PoseBoard/AllPoses" instance=ExtResource("3_5mrsn")]
+
+[node name="Two" parent="PoseBoard/AllPoses" instance=ExtResource("3_5mrsn")]
+
+[node name="Three" parent="PoseBoard/AllPoses" instance=ExtResource("3_5mrsn")]
+
+[node name="Four" parent="PoseBoard/AllPoses" instance=ExtResource("3_5mrsn")]
+
+[node name="Five" parent="PoseBoard/AllPoses" instance=ExtResource("3_5mrsn")]
+
+[node name="Fist" parent="PoseBoard/AllPoses" instance=ExtResource("3_5mrsn")]
+
+[node name="Grip" parent="PoseBoard/AllPoses" instance=ExtResource("3_5mrsn")]
+
+[node name="Rest" parent="PoseBoard/AllPoses" instance=ExtResource("3_5mrsn")]
+
+[node name="Horns" parent="PoseBoard/AllPoses" instance=ExtResource("3_5mrsn")]
+
+[node name="Metal" parent="PoseBoard/AllPoses" instance=ExtResource("3_5mrsn")]
+
+[node name="Cup" parent="PoseBoard/AllPoses" instance=ExtResource("3_5mrsn")]
+
+[node name="OK" parent="PoseBoard/AllPoses" instance=ExtResource("3_5mrsn")]
+
+[node name="Thumb" parent="PoseBoard/AllPoses" instance=ExtResource("3_5mrsn")]
+
+[node name="Phone" parent="PoseBoard/AllPoses" instance=ExtResource("3_5mrsn")]
+
+[node name="Pistol" parent="PoseBoard/AllPoses" instance=ExtResource("3_5mrsn")]
+
+[node name="Save" parent="PoseBoard" instance=ExtResource("4_doyla")]
+transform = Transform3D(1, 0, 0, 0, 0.613362, -0.789802, 0, 0.789802, 0.613362, -0.420292, 0.760742, -0.432391)
+skeleton = NodePath("../AllPoses")
+custom_label = "Save"
+
+[node name="Print" parent="PoseBoard" instance=ExtResource("4_doyla")]
+transform = Transform3D(1, 0, 0, 0, 0.613362, -0.789802, 0, 0.789802, 0.613362, -0.278161, 0.760742, -0.432391)
+skeleton = NodePath("../AllPoses")
+custom_label = "Print"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="pressed" from="PoseBoard/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="PoseBoard/Print" to="." method="_on_print_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

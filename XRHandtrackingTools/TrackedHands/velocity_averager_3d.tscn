@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dybm2ir8qeqre"]
+
+[ext_resource type="Script" path="res://XRHandtrackingTools/TrackedHands/velocity_averager_3d.gd" id="1_vlfon"]
+
+[node name="VelocityAverager3D" type="Node3D"]
+script = ExtResource("1_vlfon")

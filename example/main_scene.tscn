@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1vqucnnhdppc"]
+
+[ext_resource type="Script" path="res://example/main_scene.gd" id="1_4gi5f"]
+[ext_resource type="PackedScene" uid="uid://bqpaollanvd23" path="res://example/DroidTrainingRoom/environment/level.tscn" id="2_a6wse"]
+
+[node name="MainScene" type="Node3D"]
+script = ExtResource("1_4gi5f")
+
+[node name="scene" parent="." instance=ExtResource("2_a6wse")]

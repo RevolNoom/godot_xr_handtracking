@@ -17,8 +17,8 @@ collision_mask = 131072
 monitorable = false
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Area3D"]
-depth = 0.03
-polygon = PackedVector2Array(0.015, 0.0075, 0.015, -0.0075, -0.015, -0.0075, -0.015, 0.0075)
+depth = 0.0
+polygon = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0)
 margin = 0.001
 
 [node name="Label" type="Label3D" parent="."]

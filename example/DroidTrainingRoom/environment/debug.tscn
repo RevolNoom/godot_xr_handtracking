@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://co77irb0q3up"]
+
+[ext_resource type="Script" path="res://example/DroidTrainingRoom/environment/debug.gd" id="1_3qpmu"]
+
+[node name="Debug" type="Label3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 0.999999, 0, 8.74228e-08, 0, -1, 9.7185, 0.257556, 1.77841)
+pixel_size = 0.002
+text = "FPS: ???"
+horizontal_alignment = 0
+script = ExtResource("1_3qpmu")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.05
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="VR"
-run/main_scene="res://environment/Deliverable/world.tscn"
+run/main_scene="res://example/main_scene.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -29,7 +29,7 @@ enabled=PackedStringArray()
 3d_physics/layer_6="teleportable_weapon"
 3d_physics/layer_17="held_object"
 3d_physics/layer_18="player_hand"
-3d_physics/layer_19="grab_point"
+3d_physics/layer_19="pickarea"
 3d_physics/layer_20="player_body"
 3d_physics/layer_21="pointable"
 
@@ -40,5 +40,4 @@ textures/vram_compression/import_etc2_astc=true
 [xr]
 
 openxr/enabled=true
-openxr/default_action_map="res://keyboard/openxr_action_map.tres"
 shaders/enabled=true

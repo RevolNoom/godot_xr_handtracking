@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpso6wd6r7u45"]
+
+[ext_resource type="Script" path="res://XRHandtrackingTools/TrackedHands/ranged_pointer.gd" id="1_7yok6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yelik"]
+albedo_color = Color(1, 1, 1, 50)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_7h8yd"]
+material = SubResource("StandardMaterial3D_yelik")
+radius = 0.2
+height = 0.4
+radial_segments = 8
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vf4ew"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 50)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_uyrjq"]
+material = SubResource("StandardMaterial3D_vf4ew")
+top_radius = 0.005
+bottom_radius = 0.0
+height = 0.01
+radial_segments = 8
+
+[node name="RangedPointer" type="Node3D"]
+script = ExtResource("1_7yok6")
+picker_mask = 262144
+
+[node name="Destination" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.04, 0, 0, 0, -1.74846e-09, -0.04, 0, 0.04, -1.74846e-09, 0, -0.099918, 0)
+mesh = SubResource("SphereMesh_7h8yd")
+skeleton = NodePath("../Picker")
+
+[node name="Pointer" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.110918, 0)
+mesh = SubResource("CylinderMesh_uyrjq")
+skeleton = NodePath("../Picker")
+
+[node name="DestinationParkingSlot" type="Marker3D" parent="Pointer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.011, 0)
+
+[node name="Picker" type="RayCast3D" parent="."]
+exclude_parent = false
+target_position = Vector3(0, -2, 0)
+collision_mask = 262144
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="CurrentPoint" type="RayCast3D" parent="."]
+exclude_parent = false
+target_position = Vector3(0, -2, 0)
+collision_mask = 4294967295

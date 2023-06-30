@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://o7j31t5xjoyx"]
+
+[ext_resource type="Script" path="res://keyboard/weapon_summoner.gd" id="1_7j5sn"]
+[ext_resource type="PackedScene" uid="uid://depddl1urdch2" path="res://keyboard/button/Button.tscn" id="2_u54cm"]
+[ext_resource type="Texture2D" uid="uid://g7qtxqbwsaht" path="res://icon.svg" id="3_0cckt"]
+[ext_resource type="Texture2D" uid="uid://cix613plfaly" path="res://assets/selfmadeassets/blaster_icon.png" id="4_dpywf"]
+[ext_resource type="Texture2D" uid="uid://bvd87wvako4k5" path="res://assets/selfmadeassets/gil.png" id="5_1m54h"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u4ccj"]
+size = Vector3(0.03, 0.007, 0.03)
+
+[sub_resource type="BoxMesh" id="BoxMesh_51a2n"]
+size = Vector3(0.05, 0.005, 0.05)
+
+[node name="WeaponSummoner" type="Node3D" groups=["weapon_summoner"]]
+script = ExtResource("1_7j5sn")
+
+[node name="Power" parent="." instance=ExtResource("2_u54cm")]
+mesh = SubResource("BoxMesh_u4ccj")
+toggle_mode = true
+collision_shape_to_mesh_ratio = 1.0
+
+[node name="Sprite3D" type="Sprite3D" parent="Power"]
+transform = Transform3D(-1.09278e-09, 0.025, 0, 1.09278e-09, 4.77671e-17, -0.025, -0.025, -1.09278e-09, -1.09278e-09, 0, 0.004, 0)
+texture = ExtResource("3_0cckt")
+
+[node name="Keys" type="Node3D" parent="."]
+visible = false
+
+[node name="Blaster" parent="Keys" instance=ExtResource("2_u54cm")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.05, -0.0635956)
+mesh = SubResource("BoxMesh_51a2n")
+skeleton = NodePath("")
+enabled = false
+collision_shape_to_mesh_ratio = 1.0
+
+[node name="Sprite3D" type="Sprite3D" parent="Keys/Blaster"]
+transform = Transform3D(0.00565685, 0.00565685, 2.47269e-10, 0, -3.49691e-10, 0.008, 0.00565685, -0.00565685, -2.47269e-10, 0, 0.006, 0)
+texture = ExtResource("4_dpywf")
+
+[node name="Lightsaber" parent="Keys" instance=ExtResource("2_u54cm")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.05, 0.0639946)
+mesh = SubResource("BoxMesh_51a2n")
+skeleton = NodePath("")
+enabled = false
+collision_shape_to_mesh_ratio = 1.0
+
+[node name="Sprite3D" type="Sprite3D" parent="Keys/Lightsaber"]
+transform = Transform3D(0.007, 0, 0, 0, -3.0598e-10, 0.007, 0, -0.007, -3.0598e-10, 0, 0.006, 0)
+texture = ExtResource("5_1m54h")
+
+[connection signal="pressed" from="Power" to="." method="_on_power_pressed"]
+[connection signal="unpressed" from="Power" to="." method="_on_power_unpressed"]
+[connection signal="pressed" from="Keys/Blaster" to="." method="_on_blaster_pressed"]
+[connection signal="pressed" from="Keys/Lightsaber" to="." method="_on_lightsaber_pressed"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhw38t4v4v4vg"]
+
+[ext_resource type="Script" path="res://XRHandtrackingTools/TrackedHands/xr_pickup_function.gd" id="1_jqegu"]
+[ext_resource type="PackedScene" uid="uid://b3rhymncbdh4c" path="res://XRHandtrackingTools/TrackedHands/hand_pose_matcher.tscn" id="2_ahg6j"]
+[ext_resource type="Script" path="res://XRHandtrackingTools/TrackedHands/velocity_averager_3d.gd" id="3_pcx1m"]
+[ext_resource type="PackedScene" uid="uid://cpso6wd6r7u45" path="res://XRHandtrackingTools/TrackedHands/ranged_pointer.tscn" id="4_hkchc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vjlxy"]
+size = Vector3(0.128017, 0.103817, 0.178295)
+
+[node name="XRPickupFunction" type="BoneAttachment3D"]
+script = ExtResource("1_jqegu")
+
+[node name="HandPoseMatcher" parent="." instance=ExtResource("2_ahg6j")]
+
+[node name="PickupArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, -0.0225458)
+collision_layer = 0
+collision_mask = 262144
+
+[node name="CollisionShape" type="CollisionShape3D" parent="PickupArea"]
+shape = SubResource("BoxShape3D_vjlxy")
+
+[node name="PoseName" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, 0)
+visible = false
+pixel_size = 0.002
+text = "Fist"
+
+[node name="VelocityAverager3D" type="Node3D" parent="."]
+script = ExtResource("3_pcx1m")
+
+[node name="PickedObjectTransform" type="RemoteTransform3D" parent="."]
+update_scale = false
+
+[node name="RangedPointer" parent="." instance=ExtResource("4_hkchc")]
+
+[node name="XRHandSnapMarker" type="Marker3D" parent="."]
+
+[connection signal="new_pose" from="HandPoseMatcher" to="." method="_on_hand_pose_matcher_new_pose"]
+[connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
+[connection signal="area_exited" from="PickupArea" to="." method="_on_pickup_area_area_exited"]

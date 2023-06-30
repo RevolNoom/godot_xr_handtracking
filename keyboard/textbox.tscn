@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4g58q7utphmr"]
+
+[ext_resource type="Script" path="res://keyboard/textbox.gd" id="1_m12fy"]
+
+[node name="Code" type="Label3D"]
+transform = Transform3D(-2.89086e-08, 0.750076, -0.661351, 3.27869e-08, 0.661351, 0.750076, 1, 0, -4.37114e-08, 0.0485263, 0.0512704, -0.000723146)
+pixel_size = 0.001
+script = ExtResource("1_m12fy")

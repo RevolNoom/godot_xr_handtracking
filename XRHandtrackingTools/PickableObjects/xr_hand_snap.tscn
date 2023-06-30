@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://el55y1464tbc"]
+
+[ext_resource type="Script" path="res://XRHandtrackingTools/PickableObjects/xr_hand_snap.gd" id="1_wxipj"]
+
+[node name="XRHandSnap" type="Marker3D"]
+script = ExtResource("1_wxipj")

@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1vqucnnhdppc"]
-
-[ext_resource type="Script" path="res://environment/Deliverable/world.gd" id="1_va1yl"]
-[ext_resource type="PackedScene" uid="uid://bqpaollanvd23" path="res://level.tscn" id="3_8vscc"]
-
-[node name="world" type="Node3D"]
-script = ExtResource("1_va1yl")
-
-[node name="scene" parent="." instance=ExtResource("3_8vscc")]

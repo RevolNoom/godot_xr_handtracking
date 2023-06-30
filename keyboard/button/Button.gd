@@ -19,8 +19,8 @@ signal unpressed(key: Key)
 		key = value
 		if get_child_count():
 			custom_label = OS.get_keycode_string(key)
-		
-		
+
+
 @export var custom_label: String = "":
 	set(value):
 		custom_label = value
@@ -28,6 +28,8 @@ signal unpressed(key: Key)
 			$Label.text = custom_label
 
 @export var toggle_mode: bool = false
+
+@export var collision_shape_to_mesh_ratio: float = 1.0/3
 
 @export var letter_to_button_ratio = 0.8:
 	set(new_ratio):
@@ -85,11 +87,11 @@ func _on_property_list_changed():
 	var width = size.x
 	var height = size.z
 	var depth = size.y
-	$Area3D/CollisionPolygon3D.polygon = [Vector2(width/2, depth/2),
-										Vector2(width/2, -depth/2),
-										Vector2(-width/2, -depth/2),
-										Vector2(-width/2, depth/2)]
-	$Area3D/CollisionPolygon3D.depth = height
+	$Area3D/CollisionPolygon3D.polygon = [Vector2(width/2, depth/2)* collision_shape_to_mesh_ratio,
+										Vector2(width/2, -depth/2)* collision_shape_to_mesh_ratio,
+										Vector2(-width/2, -depth/2)* collision_shape_to_mesh_ratio,
+										Vector2(-width/2, depth/2)* collision_shape_to_mesh_ratio]
+	$Area3D/CollisionPolygon3D.depth = height* collision_shape_to_mesh_ratio
 	
 	$Label.font_size = min(width, height) * letter_to_button_ratio / $Label.pixel_size 
 	$Label.outline_size = $Label.font_size * outline_to_font_ratio
