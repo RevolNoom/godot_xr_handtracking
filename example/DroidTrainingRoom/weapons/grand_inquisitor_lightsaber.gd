@@ -12,13 +12,7 @@ class_name GrandInquisitorLightsaber
 
 var _spinner_angular_vel := Vector3()
 var _spinning := false
-var _boomerange_thrower = null:
-	set(value):
-		_boomerange_thrower = value
-		if value == null:
-			print("null set here:")
-			print_stack()
-			print()
+var _boomerange_thrower = null
 
 
 func reset():
