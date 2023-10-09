@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwff7gcdy1clx"]
+
+[ext_resource type="PackedScene" uid="uid://1n1kke68mut5" path="res://XRHandtrackingTools/TrackedHands/user.tscn" id="1_fhgkg"]
+[ext_resource type="PackedScene" uid="uid://brogfigy1htd2" path="res://example/weapon/blaster_dc_15.tscn" id="1_g53s3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6nt3u"]
+
+[node name="Example" type="Node3D"]
+
+[node name="BlasterDC15" parent="." instance=ExtResource("1_g53s3")]
+transform = Transform3D(-0.996858, 0, 0.0792072, 0, 1, 0, -0.0792072, 0, -0.996858, 0, 1.17813, -0.879015)
+
+[node name="User" parent="." instance=ExtResource("1_fhgkg")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55586, -1.1168)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_6nt3u")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://2fk84gbpnj6p"]
+
+[ext_resource type="Script" path="res://example/weapon/barrel.gd" id="1_kxqxg"]
+[ext_resource type="AudioStream" uid="uid://b2epaonloyfdy" path="res://example/weapon/blaster-2-81267.mp3" id="2_ur0ts"]
+
+[node name="Barrel" type="Marker3D"]
+script = ExtResource("1_kxqxg")
+
+[node name="ShootAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_ur0ts")
+volume_db = 20.0
+
+[node name="Dump" type="Node" parent="."]

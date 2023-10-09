@@ -2,12 +2,10 @@ extends OpenXRHand
 class_name XRTrackedHand
 
 
-# This class contains my attempt to add physics to my hands
-# so that they can press buttons on my keyboard
+# This class contains my attempt to add physics to hands
+# so that they can press keyboard buttons
 #
-# Not very interesting. You might want to setup your own hands.
-
-
+# Not very interesting. You might want to setup your own hands instead
 
 @export_flags_3d_physics var hand_collision_layer: int = 0b00000000_00000010_00000000_00000000:
 	set(value):

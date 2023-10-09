@@ -9,7 +9,11 @@
 - Latest tested Godot version: v4.1.beta2.official.a2575cba4
 - Tested headset: Meta Quest 2
 
-You can find the example scene in example/main_scene.tscn
+You can find the example scene in example/example.tscn
+
+This is a stripped-down version of a full game.
+You can find it here: 
+https://github.com/RevolNoom/Galaxy-Warrior-Training
 
 ## WHAT THIS TOOLKIT PROVIDES:
 
@@ -46,16 +50,7 @@ You can find the example scene in example/main_scene.tscn
 ## CREDITS
 
 **3D assets licensed under Creative Commons Attribution:**
-
-- "Grand Inquisitor Lightsaber" - RealKermitDaFrog 
-- "sci-fi hologram table" - irzafy
-- "Hologram" - "KangaroOz 3D"
-- "Battle Droid B2" - Andrés Kuiper
 - "DC-15" - KO71K
-- "Star Wars: The Clone Wars: Venator Prefab" - ShineyFX
-- "Gaming Table" - chayaruar
-- "Ammo box" - Hurricane
-
 **Sound effects:** Pixabay
 
 Ideas and implementations inspired by these two awesome Godot XR toolkits:
