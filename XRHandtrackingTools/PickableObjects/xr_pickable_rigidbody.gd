@@ -9,11 +9,14 @@ extends RigidBody3D
 
 
 
-## Emitted when @picker range-pick up object at @pick_area
+## Emitted every time a @picker ranged-pickup this object at @pick_area
 signal ranged_picked(_self, picker: XRPickupFunction, pick_area: XRPickArea)
-## Emitted when @picker pick up object at @pick_area
+## Emitted every time a @picker pickup this object at @pick_area
 signal picked(_self, picker: XRPickupFunction, pick_area: XRPickArea)
 ## Emitted when @picker dropped object from @pick_area
+signal let_go(_self, picker: XRPickupFunction, pick_area: XRPickArea)
+## Emitted when @picker is the last XRPickupFunction that hold onto this
+## object
 signal dropped(_self, picker: XRPickupFunction, pick_area: XRPickArea)
 
 # See Mux123's Godot XR Tools for more detailed explanation
@@ -24,17 +27,49 @@ const DEFAULT_PICKUP_LAYER: int = 0b0000_0000_0000_0001_0000_0000_0000_0000
 ## Physic mask of the object when it's picked up
 @export_flags_3d_physics var picked_up_mask: int = 0
 
+## Amount of XRPickArea that can be picked up simultaneously
+@export_range(1, 99999) var simultaneous_pick: int = 1
+## If true, allow children XRPickArea to be picked
+## If false, disable children XRPickArea from being picked
+@export var enabled : bool = true
+
 ## If custom_movement = true, 
 ## you may override _on_hand_transform_updated() to move it your way
 @export var custom_movement = true 
 
+## The XRPickupFunction that are holding this object
+var _current_pickers: Array[XRPickupFunction] = []
 
+## Physic layer of the object before it's picked up
 var _original_collision_layer: int
+## Physic mask of the object before it's picked up
 var _original_collision_mask: int
+## Relative transform to XRTrackedHand before it's picked up
 var _global_transform_relative_to_picker := Transform3D()
 
 
-func _on_pick_area_controller_picked_up(picker: XRPickupFunction, at_pickarea: XRPickArea):
+## Test if this object can be picked up
+func can_pick_up() -> bool:
+	return enabled and _current_pickers.size() < simultaneous_pick
+
+## Return true if this object is being held
+func is_picked() -> bool:
+	return _current_pickers.size() > 0
+
+## Slip this object away from hands holding it
+func slip_away():
+	for picker in _current_pickers:
+		picker.drop_object()
+
+
+## OVERRIDE ME!
+## Called by @pickarea when this object is picked up
+func _on_pick_area_picked_up(picker: XRPickupFunction, pickarea: XRPickArea):
+	# Skip if disabled or already picked up
+	if not can_pick_up():
+		return
+	_current_pickers.push_back(picker)
+	
 	freeze = true
 	# Remember the mode before pickup
 	_original_collision_layer = collision_layer
@@ -45,7 +80,7 @@ func _on_pick_area_controller_picked_up(picker: XRPickupFunction, at_pickarea: X
 	# Check for hand snaps
 	# And re-orient this object so that the XRHandSnap
 	# has identical transform to the hand
-	_snap_transform(picker, at_pickarea)
+	_snap_transform(picker, pickarea)
 	
 	# If you want to control the object movement directly
 	# comment out this line
@@ -61,13 +96,20 @@ func _on_pick_area_controller_picked_up(picker: XRPickupFunction, at_pickarea: X
 			* global_transform.basis)\
 				.orthonormalized()
 	
-	emit_signal("picked", self, picker, at_pickarea)
+	emit_signal("picked", self, picker, pickarea)
 
 
-# Almost perfect copy of picked_up version
-# Differs in signal emitted
-# Of course, you are welcome to implement it anyhow you like
-func _on_pick_area_controller_ranged_picked_up(picker: XRPickupFunction, at_pickarea: XRPickArea):
+## OVERRIDE ME!
+## Almost perfect copy of picked_up version
+## Differs in signal emitted
+## Of course, you are welcome to implement it anyhow you like
+## Called by @pickarea when this object is ranged-picked
+func _on_pick_area_ranged_picked_up(picker: XRPickupFunction, pickarea: XRPickArea):
+	# Skip if disabled or already picked up
+	if not can_pick_up():
+		return
+	_current_pickers.push_back(picker)
+	
 	freeze = true
 	# Remember the mode before pickup
 	_original_collision_layer = collision_layer
@@ -78,7 +120,7 @@ func _on_pick_area_controller_ranged_picked_up(picker: XRPickupFunction, at_pick
 	# Check for hand snaps
 	# And re-orient this object so that the XRHandSnap
 	# has identical transform to the hand
-	_snap_transform(picker, at_pickarea)
+	_snap_transform(picker, pickarea)
 	
 	# If you want to control the object movement directly
 	# comment out this line
@@ -94,7 +136,7 @@ func _on_pick_area_controller_ranged_picked_up(picker: XRPickupFunction, at_pick
 			* global_transform.basis)\
 				.orthonormalized()
 	
-	emit_signal("ranged_picked", self, picker, at_pickarea)
+	emit_signal("ranged_picked", self, picker, pickarea)
 
 
 ## OVERRIDE ME!
@@ -102,7 +144,10 @@ func _on_hand_transform_updated(_picker: XRPickupFunction):
 	global_transform = _picker.global_transform * _global_transform_relative_to_picker
 
 
-func _on_pick_area_controller_dropped(picker: XRPickupFunction, at_pickarea: XRPickArea):
+## OVERRIDE ME!
+## Called when this object is dropped
+func _on_pick_area_dropped(picker: XRPickupFunction, pickarea: XRPickArea):
+	_current_pickers.erase(picker)
 	freeze = false
 	collision_mask = _original_collision_mask
 	collision_layer = _original_collision_layer
@@ -111,16 +156,17 @@ func _on_pick_area_controller_dropped(picker: XRPickupFunction, at_pickarea: XRP
 		picker.disconnect("transform_updated", _on_hand_transform_updated)
 	
 	# Throw behavior
-	# Comment them out to make things just drop lifelessly
+	# Comment them out to make this object drops lifelessly
 	linear_velocity = picker.get_linear_velocity()
 	angular_velocity =  picker.get_angular_velocity()
 	
-	emit_signal("dropped", self, picker, at_pickarea)
+	emit_signal("let_go", self, picker, pickarea)
+	if _current_pickers.size() == 0:
+		emit_signal("dropped", self, picker, pickarea)
 
 
-# Check for hand snaps
-# And re-orient this object so that the XRHandSnap
-# has identical transform to the hand
+## Check for hand snaps and re-orient this object
+## so that the XRHandSnap has identical transform to the hand
 func _snap_transform(picker: XRPickupFunction, pickarea: XRPickArea):
 	var snap = pickarea.get_hand_snap(picker.get_hand())
 	if snap:
@@ -130,10 +176,8 @@ func _snap_transform(picker: XRPickupFunction, pickarea: XRPickArea):
 		global_position += picker.global_position - snap.global_position
 
 
-
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings = []
-	var xr_pac: XRPickAreaController = null
 	if freeze_mode != FREEZE_MODE_KINEMATIC:
 		warnings.append("""freeze_mode should be Kinematic.""")
 	
@@ -145,38 +189,34 @@ func _get_configuration_warnings() -> PackedStringArray:
 		warnings.append("""No snap point found. Consider adding some Marker3Ds 
 		as children of "SnapPoints" and configure their transform to work
 		with XRSnapArea""")
-		
-	for child in get_children():
-		if child is XRPickAreaController:
-			xr_pac = child
-			break
-	if xr_pac == null:
-		warnings.append("""Child XRPickAreaController not found. 
-		An XRPickAreaController controls XRPickAreas (where your hand can 
-		interact) for this object.""")
-	else:
-		if xr_pac.dropped.get_connections().size() == 0:
-			warnings.append("""XRPickAreaController's 'dropped' signal is not
-			connected to _on_pick_area_controller_dropped. This object
-			 won't get notified of XRTrackedHand's dropping actions""")
-		if xr_pac.picked_up.get_connections().size() == 0\
-			and xr_pac.ranged_picked_up.get_connections().size() == 0:
-			warnings.append("""Both XRPickAreaController's 'picked_up' and 
-			'ranged_picked_up' signals aren't connected to _
-			on_pick_area_controller_(ranged_)picked_up. This object won't be
-			notified of XRTrackedHand's picking actions""")
-			
+	
 	var pickable_layer = GodotXRHandtrackingToolkit.get_layer_index("pickable")
 	if pickable_layer == -1:
 		warnings.append("""Physic layer 'pickable' not found in 
 		"Project > Project Settings > Layer Names > 3D Physic".""") 
 	elif collision_layer & (1 << pickable_layer) == 0:
-		warnings.append("""All (and Only) XRPickable objects should be in 'pickable' 
-		collision layer (layer %d). If this is intended, please kindly ignore
-		or comment out this message. If it's not and you want to disable picking 
-		behavior, you should disable XRPickAreaController instead""" % pickable_layer)
+		warnings.append("""Collision layer %d ('pickable') disabled.
+		This object will not react to pickup.""" % (pickable_layer+1))
+
+	if simultaneous_pick > 1:
+		warnings.append("""Remember to implement dual-hand object movement. 
+		You may comment out this warning""")
+	
+	var missing_pick_area = true
+	for child in get_children():
+		if child is XRPickArea:
+			missing_pick_area = false
+	
+	if missing_pick_area:
+		warnings.append("Please add some children XRPickArea.")
+
 	return warnings
 
 func _on_property_list_changed():
 	update_configuration_warnings()
 
+func _on_child_entered_tree(node):
+	update_configuration_warnings()
+
+func _on_child_exiting_tree(node):
+	update_configuration_warnings()

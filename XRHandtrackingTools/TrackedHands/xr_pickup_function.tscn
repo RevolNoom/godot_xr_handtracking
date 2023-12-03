@@ -17,6 +17,7 @@ script = ExtResource("1_jqegu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, -0.0225458)
 collision_layer = 0
 collision_mask = 262144
+monitorable = false
 
 [node name="CollisionShape" type="CollisionShape3D" parent="PickupArea"]
 shape = SubResource("BoxShape3D_vjlxy")

@@ -87,7 +87,7 @@ func _on_hand_pose_matcher_new_pose(previous_pose: StringName, pose: StringName)
 	# I'm not sure about this. I feel like people will have different
 	# needs when it comes to dropping behavior
 	elif drop_condition_is_met(pose):
-		_drop_object()
+		drop_object()
 			
 	emit_signal("pose_updated", previous_pose, pose)
 
@@ -109,7 +109,7 @@ func _on_pickup_area_area_entered(_area: Area3D):
 
 func _on_pickup_area_area_exited(area):
 	if _pickarea == area:
-		_drop_object()
+		drop_object()
 
 
 func _get_closest_pickable_area(pickareas: Array[XRPickArea]):
@@ -154,7 +154,7 @@ func _pick_up_object_has(pickarea: XRPickArea, ranged: bool) -> void:
 			emit_signal("picked_up", _picked_object)
 
 
-func _drop_object():
+func drop_object():
 	$PickedObjectTransform.remote_path = NodePath()
 	$RangedPointer.enabled = true
 	var obj = _picked_object
@@ -169,11 +169,16 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if pickable_layer == -1:
 		warnings.append("""Physic layer 'pickable' not found in 
 		"Project > Project Settings > Layer Names > 3D Physic".""") 
-	elif $PickupArea.collision_mask & (1 << pickable_layer) == 0:
-		warnings.append("""$PickArea collision mask should enable 'pickable' 
-		layer (layer %d). If this is intended, please kindly ignore
-		or comment out this message.""" % pickable_layer)
+	else:
+		if $PickupArea.collision_mask & (1 << pickable_layer) == 0:
+			warnings.append("""$PickArea collision mask should enable 'pickable' 
+			layer (layer %d). If this is intended, please kindly ignore
+			or comment out this message.""" % (pickable_layer+1))
+		if not $PickupArea.monitoring:
+			warnings.append("""$PickArea's "monitoring" is disabled.
+			XRPickupFunction won't be able to identify XRPickAreas""")
 	return []
+
 
 func _enter_tree():
 	if get_parent() as Skeleton3D:

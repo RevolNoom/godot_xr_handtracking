@@ -1,10 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://brogfigy1htd2"]
+[gd_scene load_steps=17 format=3 uid="uid://brogfigy1htd2"]
 
 [ext_resource type="Script" path="res://example/weapon/blaster_dc_15.gd" id="1_j01ou"]
 [ext_resource type="Texture2D" uid="uid://bjmeri4njsf7o" path="res://assets/dc-15/textures/DC-15_BaseColor.png" id="2_xg64n"]
-[ext_resource type="PackedScene" uid="uid://bppff60eit67" path="res://XRHandtrackingTools/PickableObjects/pick_area_controller.tscn" id="3_pkrau"]
 [ext_resource type="PackedScene" uid="uid://cqkiyb020plc3" path="res://XRHandtrackingTools/PickableObjects/xr_pick_area.tscn" id="4_8b331"]
-[ext_resource type="PackedScene" uid="uid://dybm2ir8qeqre" path="res://XRHandtrackingTools/TrackedHands/velocity_averager_3d.tscn" id="5_6prsa"]
 [ext_resource type="PackedScene" uid="uid://2fk84gbpnj6p" path="res://example/weapon/barrel.tscn" id="6_plr1v"]
 [ext_resource type="PackedScene" uid="uid://el55y1464tbc" path="res://XRHandtrackingTools/PickableObjects/xr_hand_snap.tscn" id="6_qxnka"]
 
@@ -129,56 +127,47 @@ shape = SubResource("BoxShape3D_gjwr0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.053231, 0.008603, -0.00107538)
 shape = SubResource("BoxShape3D_nv71e")
 
-[node name="VelocityAverager3D" parent="." instance=ExtResource("5_6prsa")]
-
-[node name="PickAreaController" parent="." instance=ExtResource("3_pkrau")]
-attached_to_object = NodePath("..")
-
-[node name="PickArea" parent="PickAreaController" instance=ExtResource("4_8b331")]
+[node name="PickArea" parent="." instance=ExtResource("4_8b331")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0516063, -0.123914)
 enable_pose_change_picking = true
 pose_change_pick_poses = Array[StringName]([&"Fist", &"One"])
 ranged_pick_poses = Array[StringName]([&"Fist", &"One"])
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="PickAreaController/PickArea"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="PickArea"]
 transform = Transform3D(1, 0, 0, 0, 0.473135, 0.88099, 0, -0.88099, 0.473135, 0, 0, 0)
 shape = SubResource("BoxShape3D_erqxo")
 
-[node name="XRHandSnapLeft" parent="PickAreaController/PickArea" instance=ExtResource("6_qxnka")]
+[node name="XRHandSnapLeft" parent="PickArea" instance=ExtResource("6_qxnka")]
 transform = Transform3D(-4.37114e-08, 0.999999, 0, 0.984808, 4.30473e-08, -0.173648, -0.173648, -7.5904e-09, -0.984806, 0.036, 0.003, -0.023)
 
-[node name="XRHandSnapRight" parent="PickAreaController/PickArea" instance=ExtResource("6_qxnka")]
+[node name="XRHandSnapRight" parent="PickArea" instance=ExtResource("6_qxnka")]
 transform = Transform3D(5.88922e-08, -0.999998, -8.60945e-08, -0.984807, -4.30472e-08, -0.173648, 0.173648, 9.5013e-08, -0.984806, -0.035699, 0.00292147, -0.0230177)
 hand = 1
 
-[node name="RangedPickArea" parent="PickAreaController" instance=ExtResource("4_8b331")]
+[node name="RangedPickArea" parent="." instance=ExtResource("4_8b331")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0516063, -0.123914)
 pose_change_pick_poses = Array[StringName]([&"Fist", &"One"])
 enable_ranged_picking = true
 ranged_pick_poses = Array[StringName]([&"Fist", &"One"])
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="PickAreaController/RangedPickArea"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="RangedPickArea"]
 transform = Transform3D(1, 0, 0, 0, 0.473135, 0.88099, 0, -0.88099, 0.473135, 0, 0, 0)
 shape = SubResource("BoxShape3D_erqxo")
 
-[node name="XRHandSnapLeft" parent="PickAreaController/RangedPickArea" instance=ExtResource("6_qxnka")]
+[node name="XRHandSnapLeft" parent="RangedPickArea" instance=ExtResource("6_qxnka")]
 transform = Transform3D(-4.37114e-08, 0.999999, 0, 0.984808, 4.30473e-08, -0.173648, -0.173648, -7.5904e-09, -0.984806, 0.036, 0.003, -0.023)
 
-[node name="XRHandSnapRight" parent="PickAreaController/RangedPickArea" instance=ExtResource("6_qxnka")]
+[node name="XRHandSnapRight" parent="RangedPickArea" instance=ExtResource("6_qxnka")]
 transform = Transform3D(5.88922e-08, -0.999998, -8.60945e-08, -0.984807, -4.30472e-08, -0.173648, 0.173648, 9.5013e-08, -0.984806, -0.035699, 0.00292147, -0.0230177)
 hand = 1
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PickAreaController/RangedPickArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RangedPickArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45058e-09, 0.0531104, 0.12788)
 shape = SubResource("BoxShape3D_3fk7b")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="PickAreaController/RangedPickArea"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RangedPickArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.053231, 0.0597716, 0.123291)
 shape = SubResource("BoxShape3D_nv71e")
 
 [node name="Barrel" parent="." instance=ExtResource("6_plr1v")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.0162196, 0.202568)
-
-[connection signal="dropped" from="PickAreaController" to="." method="_on_pick_area_controller_dropped"]
-[connection signal="picked_up" from="PickAreaController" to="." method="_on_pick_area_controller_picked_up"]
-[connection signal="ranged_picked_up" from="PickAreaController" to="." method="_on_pick_area_controller_ranged_picked_up"]
