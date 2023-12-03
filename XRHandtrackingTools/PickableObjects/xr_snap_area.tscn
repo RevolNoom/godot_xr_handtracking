@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq0krpp33td0i"]
+
+[ext_resource type="Script" path="res://XRHandtrackingTools/PickableObjects/xr_snap_area.gd" id="1_4unel"]
+
+[node name="XRSnapArea" type="Area3D"]
+script = ExtResource("1_4unel")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

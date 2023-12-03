@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://depddl1urdch2" path="res://keyboard/button/Button.tscn" id="1_70nug"]
 [ext_resource type="Script" path="res://keyboard/wrist_keyboard.gd" id="1_i0b2c"]
-[ext_resource type="Texture2D" uid="uid://g7qtxqbwsaht" path="res://icon.svg" id="3_jthj8"]
+[ext_resource type="Texture2D" uid="uid://cvkg0gwj1jdjr" path="res://icon.svg" id="3_jthj8"]
 [ext_resource type="Script" path="res://keyboard/textbox.gd" id="4_1b4yb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_u4ccj"]

@@ -1,17 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://csjreum2su8vh"]
+[gd_scene load_steps=5 format=3 uid="uid://kfv4wvne1eeo"]
 
-[ext_resource type="Script" path="res://XRHandtrackingTools/PickableObjects/xr_pickable_rigidbody.gd" id="1_j7cyt"]
-[ext_resource type="PackedScene" uid="uid://bppff60eit67" path="res://XRHandtrackingTools/PickableObjects/pick_area_controller.tscn" id="2_8roij"]
-[ext_resource type="PackedScene" uid="uid://cqkiyb020plc3" path="res://XRHandtrackingTools/PickableObjects/xr_pick_area.tscn" id="3_dqiqb"]
+[ext_resource type="Script" path="res://XRHandtrackingTools/PickableObjects/xr_pickable_rigidbody.gd" id="1_6vx7e"]
+[ext_resource type="PackedScene" uid="uid://bppff60eit67" path="res://XRHandtrackingTools/PickableObjects/pick_area_controller.tscn" id="2_5tgwk"]
+[ext_resource type="PackedScene" uid="uid://cqkiyb020plc3" path="res://XRHandtrackingTools/PickableObjects/xr_pick_area.tscn" id="3_mbff6"]
+[ext_resource type="PackedScene" uid="uid://el55y1464tbc" path="res://XRHandtrackingTools/PickableObjects/xr_hand_snap.tscn" id="4_hjqbs"]
 
-[node name="PickableObject" type="RigidBody3D"]
-collision_layer = 4
-collision_mask = 196615
+[node name="XRPickableRigidBody" type="RigidBody3D"]
 freeze_mode = 1
-script = ExtResource("1_j7cyt")
+script = ExtResource("1_6vx7e")
+custom_movement = null
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="PickAreaController" parent="." instance=ExtResource("2_5tgwk")]
 
-[node name="GrabPointController" parent="." instance=ExtResource("2_8roij")]
+[node name="PickArea" parent="PickAreaController" instance=ExtResource("3_mbff6")]
 
-[node name="GrabPoint" parent="GrabPointController" instance=ExtResource("3_dqiqb")]
+[node name="XRHandSnap" parent="PickAreaController/PickArea" instance=ExtResource("4_hjqbs")]
+
+[node name="SnapPoints" type="Node3D" parent="."]
+
+[connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]
+[connection signal="dropped" from="PickAreaController" to="." method="_on_pick_area_controller_dropped"]
+[connection signal="picked_up" from="PickAreaController" to="." method="_on_pick_area_controller_picked_up"]
+[connection signal="ranged_picked_up" from="PickAreaController" to="." method="_on_pick_area_controller_ranged_picked_up"]

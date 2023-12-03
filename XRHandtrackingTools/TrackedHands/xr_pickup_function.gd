@@ -52,7 +52,7 @@ func get_hand() -> OpenXRHand.Hands:
 	return (get_parent().get_parent() as OpenXRHand).hand
 
 
-func takeover_movement_control(pickable: XRPickableRigidBody):
+func takeover_movement_control(pickable: XRPickable):
 	$PickedObjectTransform.global_transform = pickable.global_transform
 	$PickedObjectTransform.remote_path = pickable.get_path()
 
@@ -163,6 +163,17 @@ func _drop_object():
 	emit_signal("dropped", obj)
 
 
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings: PackedStringArray = []
+	var pickable_layer = GodotXRHandtrackingToolkit.get_layer_index("pickable")
+	if pickable_layer == -1:
+		warnings.append("""Physic layer 'pickable' not found in 
+		"Project > Project Settings > Layer Names > 3D Physic".""") 
+	elif $PickupArea.collision_mask & (1 << pickable_layer) == 0:
+		warnings.append("""$PickArea collision mask should enable 'pickable' 
+		layer (layer %d). If this is intended, please kindly ignore
+		or comment out this message.""" % pickable_layer)
+	return []
 
 func _enter_tree():
 	if get_parent() as Skeleton3D:

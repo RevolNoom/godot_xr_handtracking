@@ -2,7 +2,8 @@
 extends Area3D
 class_name XRPickArea
 
-# XRPickArea defines where an object can be picked and how
+# XRPickArea defines Where and How an object can be picked
+#
 # There are three modes (Actually only two working currently):
 # +) Pose Change Picking: Get picked up when XRPickupFunction
 #	notices that the hand changed pose while it's in this XRPickArea.
@@ -11,17 +12,9 @@ class_name XRPickArea
 #	Note: Useful for grabbing gesture.
 #	Example: Grabbing gun at blaster_dc_15.tscn
 #
-# +) Touch Picking: Get picked up when XRPickupFunction enters
-#	this XRPickArea with the current hand pose in one of touch_pick_poses
+# +) Touch Picking: Get picked up when XRPickupFunction touch
+#	this XRPickArea and its current hand pose is in one of touch_pick_poses
 #	Note: Not really sure in which general case it could be useful.
-#		 I used it for grand_inquisitor_lightsaber.tscn, where the 
-#		 lightsaber flies back like a boomerange, and this mode makes 
-#		 catching it easier
-#	Example: Catching boomerange at grand_inquisitor_lightsaber.tscn
-#
-# +) Ranged Picking [NOT IMPLEMENTED]: Works like Pose Change Picking,
-#	but the picking distance is different. I intend to add a raycast
-#	or something to XRPickupFunction. It's uncertain.
 #
 # NOTE: For more information about hand poses, check hand_pose_matcher
 
@@ -95,8 +88,17 @@ func _enter_tree():
 	update_configuration_warnings()
 	
 
-func _get_configuration_warnings():
-	if get_parent() is XRPickAreaController:
-		return []
-	return ["This node must be child of XRPickAreaController."]
-
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings: PackedStringArray = []
+	if not (get_parent() is XRPickAreaController):
+		warnings.append("This node must be child of XRPickAreaController.")
+	if not (enable_pose_change_picking || enable_ranged_picking || enable_touch_picking):
+		warnings.append("""Both "enabled" and at least one of the pick mode
+		must be turned on for the XRPickArea to work.""")
+	else:
+		for pick_mode in [[enable_pose_change_picking, pose_change_pick_poses.size(), "Pose-change"],
+			[enable_ranged_picking, ranged_pick_poses.size(), "Ranged"],
+			[enable_touch_picking, touch_pick_poses.size(), "Touch"]]:
+			if pick_mode[0] and pick_mode[1] == 0:
+				warnings.append("%s picking is enabled, but there's no pose assigned to it." % pick_mode[2])
+	return warnings

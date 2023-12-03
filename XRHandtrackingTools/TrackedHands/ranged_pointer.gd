@@ -12,9 +12,9 @@ extends Node3D
 		$Pointer.visible = enabled
 
 
-# Albedo color's alpha of $Destination and $Pointer
-# in certain circumstances
+## How transparent the pointer is when it doesn't hit anything interactable
 @export var idle_alpha = 50
+## How transparent the pointer is when it hit something interactable
 @export var pickable_alpha = 255
 
 
@@ -36,6 +36,9 @@ extends Node3D
 		
 
 func _ready():
+	if Engine.is_editor_hint():
+		set_physics_process(false)
+		set_process(false)
 	picker_mask = picker_mask
 	current_point_mask = current_point_mask
 

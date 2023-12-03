@@ -1,4 +1,4 @@
-extends XRPickableRigidBody
+extends XRPickable
 
 
 func _on_pick_area_controller_picked_up(picker: XRPickupFunction, pickarea: XRPickArea):

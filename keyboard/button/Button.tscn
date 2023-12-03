@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://depddl1urdch2"]
+[gd_scene load_steps=4 format=3 uid="uid://depddl1urdch2"]
 
 [ext_resource type="Script" path="res://keyboard/button/Button.gd" id="1_cl3qk"]
 [ext_resource type="Script" path="res://keyboard/button/Label.gd" id="2_1ngwx"]
-[ext_resource type="AudioStream" uid="uid://da1g22wwtkk6s" path="res://assets/SFX/mech-keyboard.mp3" id="3_8wdd8"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7abuy"]
 size = Vector3(0.03, 0.015, 0.03)
@@ -30,7 +29,7 @@ outline_size = 6
 script = ExtResource("2_1ngwx")
 
 [node name="Keysound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_8wdd8")
+stream = null
 volume_db = -10.0
 
 [connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]

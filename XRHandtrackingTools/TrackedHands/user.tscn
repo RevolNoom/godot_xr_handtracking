@@ -17,6 +17,7 @@ tracker = &"right_hand"
 script = ExtResource("1_igs7e")
 
 [node name="TrackedHandLeft" parent="." instance=ExtResource("2_bncog")]
+hand_collision_mask = 3
 
 [node name="TrackedHandRight" parent="." instance=ExtResource("3_c4i0j")]
 

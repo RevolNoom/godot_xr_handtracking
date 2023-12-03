@@ -6,9 +6,6 @@ class_name XRHandSnap
 # (how the hand would look respectively to the object)
 # You have to experiment around to find the best snap spots
 #
-# A few examples of XRHandSnaps are in blaster_dc_15.tscn
-# and grand_inquisitor_lightsaber.tscn
-#
 # Adding XRHandSnap to object doesn't mean the object 
 # would magically snap to hand. You, the coder, decides whether
 # you would want to snap to hand in your object's script.

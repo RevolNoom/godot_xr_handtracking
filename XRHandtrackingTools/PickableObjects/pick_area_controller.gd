@@ -2,46 +2,14 @@
 extends Node3D
 class_name XRPickAreaController
 
-
-# Controls a group of XRPickArea.
-#
-# You connect the picked_up and dropped signal to the interested party
-# and when a hand picks one of its child XRPickArea, it will tell you
-#
-# You decide how the object will move, corresponding to hand movement.
-# Some example movement codes are in XRPickableRigidBody.
-#
-# Modify simultaneous_pick if an object 
-# has two or more places that can be picked by both hand
-#
-# Modify enabled to stop the object from being picked.
-#
-# Modifying either of these exported var doesn't make the object
-# suddenly drops out of grabbing hand
-
-
-signal picked_up(picker: XRPickupFunction, pickarea: XRPickArea)
-signal ranged_picked_up(picker: XRPickupFunction, pickarea: XRPickArea)
-signal dropped(picker: XRPickupFunction, pickarea: XRPickArea)
-
-
-# Amount of XRPickArea that can be picked simultaneously
-@export_range(0, 999) var simultaneous_pick: int = 1
-# Allow children XRPickArea to be picked if true
+## Amount of XRPickArea that can be picked up simultaneously
+@export_range(0, 99999) var simultaneous_pick: int = 1
+## If true, allow children XRPickArea to be picked
+## If false, disable children XRPickArea from being picked
 @export var enabled : bool = true
-# The object this controller is attached to
-# XRPickupFunction will want to know what object it has
-# picked up via a XRPickArea.
-# Child XRPickArea will ask this node, and this node will
-# supply the answer
-# Default to parent node
-@export_node_path() var attached_to_object
-
 
 var _pickareas: Array[XRPickArea] = []
 var _current_pickers: Array = []
-
-
 
 func _enter_tree():
 	update_configuration_warnings()
@@ -51,8 +19,9 @@ func _ready():
 	update_configuration_warnings()
 
 
-func get_object() -> Node:
-	return get_node(attached_to_object)
+## Return the XRPickable this XRPickAreaController attaches to
+func get_object() -> XRPickable:
+	return get_parent()
 
 
 # Test if this object can be picked up
@@ -108,10 +77,12 @@ func _on_child_exiting_tree(node):
 
 func _get_configuration_warnings():
 	var warnings: PackedStringArray = []
-	if attached_to_object == NodePath():
+	if get_object() is:
 		warnings.append("Please set the object that PickAreaController attaches to.\n\
 				XRPickupFunction needs to know what object it has picked up.")
-		
+
+	if simultaneous_pick > 1:
+		warnings.append("Remember to implement dual-hand object movement. You may comment out this warning")
 	for child in get_children():
 		if child is XRPickArea:
 			return warnings
