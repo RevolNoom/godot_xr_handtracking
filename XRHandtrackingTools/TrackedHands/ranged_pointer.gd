@@ -10,6 +10,8 @@ extends Node3D
 		
 		$Destination.visible = enabled
 		$Pointer.visible = enabled
+		
+		set_process(enabled)
 
 
 ## How transparent the pointer is when it doesn't hit anything interactable
@@ -18,16 +20,16 @@ extends Node3D
 @export var pickable_alpha = 255
 
 
-# Layer of raycast that hints pickables
-# Flashes when hovered over pickable
+## Layer of raycast that hints pickables
+## Flashes when hovered over pickable
 @export_flags_3d_physics var picker_mask = 0:
 	set(value):
 		picker_mask = value
 		if get_child_count():
 			$Picker.collision_mask = value
 
-# Layer of raycast that hints currently pointed position
-# Default to all layers
+## Layer of raycast that hints currently pointed position
+## Default to all layers
 @export_flags_3d_physics var current_point_mask = ~0:
 	set(value):
 		current_point_mask = value
@@ -39,6 +41,7 @@ func _ready():
 	if Engine.is_editor_hint():
 		set_physics_process(false)
 		set_process(false)
+	enabled = enabled
 	picker_mask = picker_mask
 	current_point_mask = current_point_mask
 

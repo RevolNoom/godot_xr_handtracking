@@ -36,10 +36,12 @@ const ROTATION = 1
 				and skeleton != null\
 				and not Engine.is_editor_hint())
 
-# TODO: Used to prevent jittering between two poses 
-# Currently USELESS
+## TODO: Used to prevent jittering between two poses 
+## Currently USELESS
 @export var pose_stabilize_const = 0.01
 
+
+## TODO: Convert bone_idx to int instead of String
 @export_file("*.json") var hand_pose_templates: String = "":
 	set(file_path):
 		hand_pose_templates = ""
@@ -73,7 +75,7 @@ const ROTATION = 1
 				and not Engine.is_editor_hint())
 
 
-# Poses from supported_poses that the user specifies in editor
+## Poses from supported_poses that's allowed to be recognized
 @export var poses_to_recognize:= {}
 
 var supported_poses: Dictionary = {}

@@ -100,6 +100,7 @@ func drop_condition_is_met(pose: StringName) -> bool:
 
 
 func _on_pickup_area_area_entered(_area: Area3D):
+	#print("PickArea entered")
 	if enabled and _picked_object == null:
 		var closest_pickable = _get_closest_pickable_area(
 								_get_touch_pickareas())
@@ -146,7 +147,7 @@ func _get_pose_change_pickareas() -> Array[XRPickArea]:
 func _pick_up_object_has(pickarea: XRPickArea, ranged: bool) -> void:
 	$RangedPointer.enabled = false
 	if pickarea.picked_up(self):
-		_picked_object = pickarea.get_object()
+		_picked_object = pickarea.get_parent()
 		_pickarea = pickarea
 		if ranged:
 			emit_signal("ranged_picked_up", _picked_object)
@@ -159,7 +160,7 @@ func drop_object():
 	$RangedPointer.enabled = true
 	var obj = _picked_object
 	_picked_object = null
-	_pickarea.let_go()
+	_pickarea.dropped()
 	emit_signal("dropped", obj)
 
 

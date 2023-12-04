@@ -144,10 +144,13 @@ transform = Transform3D(-4.37114e-08, 0.999999, 0, 0.984808, 4.30473e-08, -0.173
 transform = Transform3D(5.88922e-08, -0.999998, -8.60945e-08, -0.984807, -4.30472e-08, -0.173648, 0.173648, 9.5013e-08, -0.984806, -0.035699, 0.00292147, -0.0230177)
 hand = 1
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45058e-09, 0.0531104, 0.12788)
+shape = SubResource("BoxShape3D_3fk7b")
+
 [node name="RangedPickArea" parent="." instance=ExtResource("4_8b331")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0516063, -0.123914)
 pose_change_pick_poses = Array[StringName]([&"Fist", &"One"])
-enable_ranged_picking = true
 ranged_pick_poses = Array[StringName]([&"Fist", &"One"])
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="RangedPickArea"]

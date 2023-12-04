@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://1n1kke68mut5"]
+[gd_scene load_steps=5 format=3 uid="uid://1n1kke68mut5"]
 
 [ext_resource type="Script" path="res://XRHandtrackingTools/TrackedHands/xr_origin_reset.gd" id="1_igs7e"]
+[ext_resource type="Script" path="res://godot-free-look-camera-132062011edfce9399a489756064cfea880dad4c/free_look_camera.gd" id="1_qrrl8"]
 [ext_resource type="PackedScene" uid="uid://d3erlk2vajf4k" path="res://XRHandtrackingTools/TrackedHands/tracked_hand_left.tscn" id="2_bncog"]
 [ext_resource type="PackedScene" uid="uid://v4wv8mgicjyc" path="res://XRHandtrackingTools/TrackedHands/tracked_hand_right.tscn" id="3_c4i0j"]
 
 [node name="User" type="XROrigin3D"]
+script = ExtResource("1_qrrl8")
+default_velocity = 2.0
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
 current = true
@@ -17,9 +20,11 @@ tracker = &"right_hand"
 script = ExtResource("1_igs7e")
 
 [node name="TrackedHandLeft" parent="." instance=ExtResource("2_bncog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -0.2, -0.4)
 hand_collision_mask = 3
 
 [node name="TrackedHandRight" parent="." instance=ExtResource("3_c4i0j")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.2, -0.2, -0.4)
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

@@ -8,7 +8,6 @@ class_name XRPickable
 extends RigidBody3D
 
 
-
 ## Emitted every time a @picker ranged-pickup this object at @pick_area
 signal ranged_picked(_self, picker: XRPickupFunction, pick_area: XRPickArea)
 ## Emitted every time a @picker pickup this object at @pick_area
@@ -35,7 +34,7 @@ const DEFAULT_PICKUP_LAYER: int = 0b0000_0000_0000_0001_0000_0000_0000_0000
 
 ## If custom_movement = true, 
 ## you may override _on_hand_transform_updated() to move it your way
-@export var custom_movement = true 
+@export var custom_movement = false 
 
 ## The XRPickupFunction that are holding this object
 var _current_pickers: Array[XRPickupFunction] = []
@@ -65,6 +64,7 @@ func slip_away():
 ## OVERRIDE ME!
 ## Called by @pickarea when this object is picked up
 func _on_pick_area_picked_up(picker: XRPickupFunction, pickarea: XRPickArea):
+	#print("Picked up")
 	# Skip if disabled or already picked up
 	if not can_pick_up():
 		return
@@ -105,6 +105,8 @@ func _on_pick_area_picked_up(picker: XRPickupFunction, pickarea: XRPickArea):
 ## Of course, you are welcome to implement it anyhow you like
 ## Called by @pickarea when this object is ranged-picked
 func _on_pick_area_ranged_picked_up(picker: XRPickupFunction, pickarea: XRPickArea):
+	#print("Ranged picked up")
+	
 	# Skip if disabled or already picked up
 	if not can_pick_up():
 		return
@@ -215,8 +217,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 func _on_property_list_changed():
 	update_configuration_warnings()
 
-func _on_child_entered_tree(node):
+func _on_child_entered_tree(_node):
 	update_configuration_warnings()
 
-func _on_child_exiting_tree(node):
+func _on_child_exiting_tree(_node):
 	update_configuration_warnings()

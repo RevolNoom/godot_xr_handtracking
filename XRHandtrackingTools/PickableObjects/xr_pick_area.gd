@@ -56,7 +56,7 @@ func is_pickable() -> bool:
 func picked_up(picker: XRPickupFunction) -> bool:
 	if is_pickable():
 		_picker = picker
-		get_parent()._on_pickarea_picked_up(picker, self)
+		get_parent()._on_pick_area_picked_up(picker, self)
 		return true
 	return false
 
@@ -65,7 +65,7 @@ func picked_up(picker: XRPickupFunction) -> bool:
 func ranged_picked_up(picker: XRPickupFunction) -> bool:
 	if is_pickable():
 		_picker = picker
-		get_parent()._on_pickarea_ranged_picked_up(picker, self)
+		get_parent()._on_pick_area_ranged_picked_up(picker, self)
 		return true
 	return false
 
