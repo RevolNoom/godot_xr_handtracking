@@ -1,11 +1,9 @@
+## Add primitive physics to hand.
+##
+## Not very interesting. You might want to setup your own hands instead
 extends OpenXRHand
 class_name XRTrackedHand
 
-
-# This class contains my attempt to add physics to hands
-# so that they can press keyboard buttons
-#
-# Not very interesting. You might want to setup your own hands instead
 
 @export_flags_3d_physics var hand_collision_layer: int = 0b00000000_00000010_00000000_00000000:
 	set(value):
@@ -38,29 +36,29 @@ class_name XRTrackedHand
 @export var on_mouse_idle_pose: String = "Rest"
 
 func _ready():
-	if Engine.is_editor_hint():
-		set_process(false)
 	hand_collision_layer = hand_collision_layer
 	hand_collision_mask = hand_collision_mask
 
 
 func _process(_delta):
-	var pose = ""
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		pose = on_mouse_pressed_pose
+	# Disable processing in editor and on headset
+	if Engine.is_editor_hint() or get_viewport().use_xr:
+		set_process(false)
 	else:
-		pose = on_mouse_idle_pose
-	assign_pose(pose)
+		var pose = ""
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			pose = on_mouse_pressed_pose
+		else:
+			pose = on_mouse_idle_pose
+		assign_pose(pose)
 
-## @pose_name is one of the poses_to_recognize pose name
+
 func assign_pose(pose_name: String):
-	var hpm = $Skeleton3D/XRPickupFunction/HandPoseMatcher
-	var pose_bones = hpm.supported_poses[hpm.hand][pose_name]
-	for i in range($Skeleton3D.get_bone_count()):
-		var bone_gpos: Vector3 = pose_bones[str(i)][HandPoseMatcher.POSITION]
-		var bone_grot: Quaternion = pose_bones[str(i)][HandPoseMatcher.ROTATION]
-		#$Skeleton3D.set_bone_global_pose_override(i, Transform3D(Basis(bone_grot), bone_gpos), 1, true)
-		$Skeleton3D.set_bone_pose_rotation(i, bone_grot)
+	var hpm = $Skeleton3D/XRPickupFunction/HandPoseMatcher as HandPoseMatcher
+	var pose = hpm.pose_catalogue.poses[hand][pose_name] as HandPose
+	if pose != null:
+		pose.override_skeleton_pose($Skeleton3D)
+	
 		
 		
 		

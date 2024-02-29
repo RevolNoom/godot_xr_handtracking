@@ -1,39 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3rhymncbdh4c"]
+[gd_scene load_steps=3 format=3 uid="uid://b3rhymncbdh4c"]
 
 [ext_resource type="Script" path="res://XRHandtrackingTools/TrackedHands/hand_pose_matcher.gd" id="1_gxfge"]
+[ext_resource type="Resource" uid="uid://csy7fd4i3c7qw" path="res://XRHandtrackingTools/PoseRecordingRoom/pose_records.tres" id="2_xta62"]
 
 [node name="HandPoseMatcher" type="Node"]
 script = ExtResource("1_gxfge")
-hand_pose_templates = "res://XRHandtrackingTools/TrackedHands/recorded_poses.json"
+pose_catalogue = ExtResource("2_xta62")
 poses_to_recognize = {
-"left": {
-"Cup": false,
+"Cup": true,
 "Fist": true,
-"Five": false,
-"Grip": false,
-"Horns": false,
-"Metal": false,
-"OK": false,
+"Five": true,
+"Four": true,
+"Grip": true,
+"Horns": true,
+"Metal": true,
+"OK": true,
 "One": true,
-"Phone": false,
-"Pistol": false,
+"Phone": true,
+"Pistol": true,
 "Rest": true,
-"Thumb": false,
-"Two": false
-},
-"right": {
-"Cup": false,
-"Fist": true,
-"Five": false,
-"Grip": false,
-"Horns": false,
-"Metal": false,
-"OK": false,
-"One": true,
-"Phone": false,
-"Pistol": false,
-"Rest": true,
-"Thumb": false,
-"Two": false
-}
+"Three": true,
+"Thumb": true,
+"Two": true
 }

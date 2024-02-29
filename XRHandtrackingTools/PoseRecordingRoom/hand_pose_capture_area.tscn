@@ -260,20 +260,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.156649)
 mesh = ExtResource("2_x6466")
 
 [node name="PoseName" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144003, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0383945, 0)
 pixel_size = 0.001
 text = "HandPoseCaptureArea"
+font_size = 25
 
 [node name="TimeLeft" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.108639, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00303051, 0)
 pixel_size = 0.001
 text = "0"
+font_size = 25
 
 [node name="Done" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0770366, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0285719, 0)
 visible = false
 pixel_size = 0.001
 text = "Done"
+font_size = 25
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
