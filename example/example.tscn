@@ -1,11 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwff7gcdy1clx"]
+[gd_scene load_steps=10 format=3 uid="uid://cwff7gcdy1clx"]
 
 [ext_resource type="PackedScene" uid="uid://1n1kke68mut5" path="res://XRHandtrackingTools/TrackedHands/user.tscn" id="1_fhgkg"]
 [ext_resource type="PackedScene" uid="uid://brogfigy1htd2" path="res://example/weapon/blaster_dc_15.tscn" id="1_g53s3"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_6nt3u"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_kbg4x"]
+size = Vector3(10, 0.1, 10)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yau1w"]
+size = Vector2(10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6nt3u"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jren2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p34au"]
+
+[sub_resource type="Sky" id="Sky_y4xdt"]
+sky_material = SubResource("ProceduralSkyMaterial_p34au")
+
+[sub_resource type="Environment" id="Environment_mb2qp"]
+background_mode = 2
+sky = SubResource("Sky_y4xdt")
 
 [node name="Example" type="Node3D"]
 
@@ -19,8 +34,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19225, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55586, -1.1168)
 collision_mask = 2
 
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55586, 1.1168)
+shape = SubResource("BoxShape3D_kbg4x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D2"]
+mesh = SubResource("PlaneMesh_yau1w")
+skeleton = NodePath("../../..")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_6nt3u")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_yau1w")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+mesh = SubResource("BoxMesh_jren2")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mb2qp")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.86601, 0)
+omni_range = 20.0

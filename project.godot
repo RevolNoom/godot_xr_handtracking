@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="VR"
-run/main_scene="res://XRHandtrackingTools/PoseRecordingRoom/hand_pose_recording_room.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+run/main_scene="res://example/example.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [editor_plugins]

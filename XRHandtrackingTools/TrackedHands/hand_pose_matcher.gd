@@ -1,25 +1,27 @@
 @tool
+## Match a hand pose to its corresponding pose name. 
+##
+## This class compares the bones transforms of a hand
+## to [HandPose]s from [HandPoseCatalogue] in every frame.[br]
+##
+## [b]NOTE:[/b] If it doesn't match anything, make sure you have given 
+## hand_pose_templates a valid json
 extends Node
 class_name HandPoseMatcher
 
-# A HandPoseMatcher compares the bones positions, rotations in
-# a Skeleton3D to a database of poses (JSON file of recorded
-# poses from PoseRecordingRoom).
-#
-# If it doesn't match anything, make sure you have given 
-# hand_pose_templates a valid json
 
+## Emitted when the [member skeleton] changes its pose.
 signal new_pose(previous_pose: StringName, pose: StringName)
 
 @export var hand: OpenXRHand.Hands = OpenXRHand.HAND_LEFT
 
-## The Skeleton3D that needs its pose identified
+## The Skeleton3D that needs its pose identified.[br]
 ##
-## NOTE: I assumed the following hierachy:
-## OpenXRHand - Skeleton3D - XRPickupFunction - HandPoseMatcher
+## The following hierachy is assumed:[br]
+## OpenXRHand - Skeleton3D - XRPickupFunction - HandPoseMatcher[br]
 ##
-## So this property is already assigned by XRPickupFunction on its _ready()
-## Modify that if you have other needs.
+## [b]NOTE:[/b] This property is already assigned by [XRPickupFunction] on _ready()
+## Modify that if you have other needs.[br]
 @export var skeleton: Skeleton3D = null:
 	set(skel):
 		skeleton = skel
@@ -29,12 +31,13 @@ signal new_pose(previous_pose: StringName, pose: StringName)
 
 
 ## Prevent jittering recognition between two poses 
-## by adding a stable zone to pose difference calculation.
+## by adding a stable zone to pose difference calculation.[br]
 ##
-## Disable stabilization by setting a huge number to it ([constant INF], for example).
+## Disable stabilization by setting a huge number to it ([constant INF], for example).[br]
 @export var pose_stabilizer: float = 0.005
 
 
+## The list of [HandPose]s to compare to.
 @export var pose_catalogue: HandPoseCatalogue:
 	set(value):
 		pose_catalogue = value
@@ -43,10 +46,10 @@ signal new_pose(previous_pose: StringName, pose: StringName)
 			poses_to_recognize[pose] = true
 		
 
-## Poses from supported_poses that's allowed to be recognized.
-## Disable poses you don't want to recognize to improve accuracy and performance.
+## Poses from supported_poses that's allowed to be recognized.[br]
+## Disable poses you don't want to recognize to improve accuracy and performance.[br]
 ##
-## Key - Value: Pose name (String) - Enabled (bool)
+## Key - Value: Pose name (String) - Enabled (bool)[br]
 @export var poses_to_recognize:= {}
 
 

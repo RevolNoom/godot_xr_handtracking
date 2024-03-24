@@ -71,10 +71,10 @@ enum Bone{
 ## Override the skeleton pose of this tracked [param hand].
 ##
 ## It is assumed that a "Skeleton3D" node is presented.
-func override_hand_pose(hand: XRTrackedHand):
-	var hand_skeleton: Skeleton3D = hand.get_node("Skeleton3D") as Skeleton3D
+func override_hand_pose(overridden_hand: XRTrackedHand):
+	var hand_skeleton: Skeleton3D = overridden_hand.get_node("Skeleton3D") as Skeleton3D
 	if hand_skeleton == null:
-		printerr("'Skeleton3D' node not found on hand ", hand.get_path())
+		printerr("'Skeleton3D' node not found on hand ", overridden_hand.get_path())
 		return
 	override_skeleton_pose(hand_skeleton)
 
@@ -106,26 +106,26 @@ func copy(hand_pose: HandPose):
 		bone_poses[idx] = hand_pose.bone_poses[idx]
 
 		
-## Construct a [HandPose] from [param hand]
+## Construct a [HandPose] from [param hand].[br]
 ##
 ## It is assumed that a "Skeleton3D" node is presented,
-## which is a rigged hand with 26 bones indexed as [enum Bone]. 
-## The Skeleton needs to be of corresponding [member hand] to this pose.
+## which is a rigged hand with 26 bones indexed as [enum Bone].[br]
+## The Skeleton needs to be of corresponding [member hand] to this pose.[br]
 ##
-## Return [constant null] if no "Skeleton3D" node is found.
-static func from_hand(hand: XRTrackedHand, name: String) -> HandPose:
-	var hand_skeleton: Skeleton3D = hand.get_node("Skeleton3D") as Skeleton3D
+## Return [constant null] if no "Skeleton3D" node is found.[br]
+static func from_hand(copied_hand: XRTrackedHand, pose_name: String) -> HandPose:
+	var hand_skeleton: Skeleton3D = copied_hand.get_node("Skeleton3D") as Skeleton3D
 	if hand_skeleton == null:
-		printerr("'Skeleton3D' node not found on hand ", hand.get_path())
+		printerr("'Skeleton3D' node not found on hand ", copied_hand.get_path())
 		return null
-	return HandPose.from_skeleton(hand_skeleton, name, hand.hand)
+	return HandPose.from_skeleton(hand_skeleton, pose_name, copied_hand.hand)
 
 ## Construct a [HandPose] from [param skeleton].
 ##
 ## [param skeleton] must be a rigged hand skeleton, 
 ## with 26 bones indexed as [enum Bone]. 
 ## It also needs to be of corresponding [member hand] to this pose.
-static func from_skeleton(skeleton: Skeleton3D, name: String, leftness: OpenXRHand.Hands) -> HandPose:
+static func from_skeleton(skeleton: Skeleton3D, pose_name: String, leftness: OpenXRHand.Hands) -> HandPose:
 	if skeleton.get_bone_count() != Bone.MAX_INDEX:
 		printerr("""Skeleton is not rigged correctly. 
 		%d bones are expected but this skeleton has %d bones. 
@@ -136,7 +136,7 @@ static func from_skeleton(skeleton: Skeleton3D, name: String, leftness: OpenXRHa
 		return
 	
 	var hand_pose := HandPose.new()
-	hand_pose.name = name
+	hand_pose.name = pose_name
 	hand_pose.hand = leftness
 	for idx in range(Bone.MAX_INDEX):
 		hand_pose.bone_poses[idx] = skeleton.get_bone_global_pose(idx)

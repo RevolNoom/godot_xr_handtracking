@@ -49,8 +49,9 @@ You can find it here:
 ## CREDITS
 
 **3D assets licensed under Creative Commons Attribution:**
-
+- JoeLudwig's hand model: https://github.com/JoeLudwig/xrsandbox/tree/master/projects/xrsandbox/assets/models/valve_hand_models
 - "DC-15" - KO71K
+
 **Sound effects:** Pixabay
 
 Ideas and implementations inspired by these two awesome Godot XR toolkits:
